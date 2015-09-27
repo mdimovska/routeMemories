@@ -29,8 +29,8 @@ angular.module('starter')
                         console.log('lat: ' + lat + ', lng: ' + lng);
                         $rootScope.positionList.push(location);
 
-//                        var latlng = new google.maps.LatLng(lat, lng);
-//                        $rootScope.latLngList.push(latlng);
+                        var latlng = new google.maps.LatLng(lat, lng);
+                        $rootScope.latLngList.push(latlng);
                     }
 
                     $scope.watchPositionChanges = function () {
@@ -111,6 +111,98 @@ angular.module('starter')
 
                     $scope.showCurrentRoute = function () {
                         $scope.showMapModal();
+
+                        showMap();
                     }
+
+
+                    var showMap = function () {
+
+                        var markers = [
+//                        {
+//                            "title": 'My location',
+//                            "lat": $scope.myLocation.latitude,
+//                            "lng": $scope.myLocation.longitude,
+//                            "description": "This is my location"
+//                        }
+//                        ,
+//                        {
+//                            "title": 'Venue location',
+//                            "lat": $scope.placeLocation.latitude,
+//                            "lng": $scope.placeLocation.longitude,
+//                            "description": formattedAddressOfPlace
+//                        }
+                        ];
+                        // TODO change default center
+                        var mapCenter = new google.maps.LatLng(2, 1);
+                        if ($rootScope.positionList !== undefined && $rootScope.positionList.length > 0) {
+                            mapCenter = new google.maps.LatLng(
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].longitude
+                                    );
+                        }
+                        var mapOptions = {
+                            center: mapCenter,
+                            zoom: 17,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+                        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+//                        var infoWindow = new google.maps.InfoWindow();
+//                        var latLngList = new Array();
+//                        var latLngBounds = new google.maps.LatLngBounds();
+//                        for (i = 0; i < markers.length; i++) {
+//                            var data = markers[i];
+//                            var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+//                            latLngList.push(myLatlng);
+//                            var marker = new google.maps.Marker({
+//                                position: myLatlng,
+//                                map: map,
+//                                title: data.title
+//                            });
+//                            latLngBounds.extend(marker.position);
+//                            (function (marker, data) {
+//                                google.maps.event.addListener(marker, "click", function (e) {
+//                                    infoWindow.setContent(data.description);
+//                                    infoWindow.open(map, marker);
+//                                });
+//                            })(marker, data);
+//                        }
+//                        map.setCenter(latLngBounds.getCenter());
+//                        map.fitBounds(latLngBounds);
+
+                        //***********ROUTING****************//
+
+                        //Initialize the Path Array
+                        var path = new google.maps.MVCArray();
+
+                        //Initialize the Direction Service
+                        var service = new google.maps.DirectionsService();
+
+                        //Set the Path Stroke Color
+                        var poly = new google.maps.Polyline({map: map, strokeColor: '#4986E7'});
+
+                        //Loop and Draw Path Route between the Points on MAP
+                        for (var i = 0; i < $rootScope.latLngList.length; i++) {
+                            if ((i + 1) < $rootScope.latLngList.length) {
+                                var src = $rootScope.latLngList[i];
+                                var des = $rootScope.latLngList[i + 1];
+                                path.push(src);
+                                poly.setPath(path);
+                                service.route({
+                                    origin: src,
+                                    destination: des,
+                                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                                }, function (result, status) {
+                                    if (status == google.maps.DirectionsStatus.OK) {
+                                        for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                                            path.push(result.routes[0].overview_path[i]);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+                    }
+
                 });
 

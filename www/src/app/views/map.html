@@ -1,11 +1,11 @@
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Current Route</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeMapModal()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    {{positionList}}
-  </ion-content>
+    <ion-header-bar>
+        <h1 class="title">Current Route</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeMapModal()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </ion-content>
 </ion-modal-view>
