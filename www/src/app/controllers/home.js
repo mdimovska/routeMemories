@@ -15,6 +15,21 @@ angular.module('starter')
 
                     $rootScope.positionList = new Array();
                     $rootScope.latLngList = new Array();
+                    $rootScope.markers = new Array();
+//                        {
+//                            "title": 'My location',
+//                            "lat": $scope.myLocation.latitude,
+//                            "lng": $scope.myLocation.longitude,
+//                            "description": "This is my location"
+//                        }
+//                        ,
+//                        {
+//                            "title": 'Venue location',
+//                            "lat": $scope.placeLocation.latitude,
+//                            "lng": $scope.placeLocation.longitude,
+//                            "description": formattedAddressOfPlace
+//                        }
+
 
                     $scope.watchOptions = {
                         timeout: 10000,
@@ -57,6 +72,15 @@ angular.module('starter')
                                     .then(function (position) {
                                         var lat = position.coords.latitude;
                                         var lng = position.coords.longitude;
+
+                                        var marker = {
+                                            "title": 'My location',
+                                            "lat": lat,
+                                            "lng": lng,
+                                            "description": "Start position"
+                                        }
+                                        $scope.markers.push(marker);
+
                                         $rootScope.started = true;
                                         $scope.appendPositionToLists(lat, lng);
 
@@ -85,6 +109,7 @@ angular.module('starter')
                             // at the end, clear route data
                             $rootScope.positionList = new Array();
                             $rootScope.latLngList = new Array();
+                            $rootScope.markers = new Array();
 
                         }
 
@@ -117,22 +142,6 @@ angular.module('starter')
 
 
                     var showMap = function () {
-
-                        var markers = [
-//                        {
-//                            "title": 'My location',
-//                            "lat": $scope.myLocation.latitude,
-//                            "lng": $scope.myLocation.longitude,
-//                            "description": "This is my location"
-//                        }
-//                        ,
-//                        {
-//                            "title": 'Venue location',
-//                            "lat": $scope.placeLocation.latitude,
-//                            "lng": $scope.placeLocation.longitude,
-//                            "description": formattedAddressOfPlace
-//                        }
-                        ];
                         // TODO change default center
                         var mapCenter = new google.maps.LatLng(2, 1);
                         if ($rootScope.positionList !== undefined && $rootScope.positionList.length > 0) {
@@ -147,26 +156,25 @@ angular.module('starter')
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
                         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-//                        var infoWindow = new google.maps.InfoWindow();
-//                        var latLngList = new Array();
-//                        var latLngBounds = new google.maps.LatLngBounds();
-//                        for (i = 0; i < markers.length; i++) {
-//                            var data = markers[i];
-//                            var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-//                            latLngList.push(myLatlng);
-//                            var marker = new google.maps.Marker({
-//                                position: myLatlng,
-//                                map: map,
-//                                title: data.title
-//                            });
-//                            latLngBounds.extend(marker.position);
-//                            (function (marker, data) {
-//                                google.maps.event.addListener(marker, "click", function (e) {
-//                                    infoWindow.setContent(data.description);
-//                                    infoWindow.open(map, marker);
-//                                });
-//                            })(marker, data);
-//                        }
+                        
+                        var infoWindow = new google.maps.InfoWindow();
+                        var latLngBounds = new google.maps.LatLngBounds();
+                        for (i = 0; i < $rootScope.markers.length; i++) {
+                            var data = $rootScope.markers[i];
+                            var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                            var marker = new google.maps.Marker({
+                                position: myLatlng,
+                                map: map,
+                                title: data.title
+                            });
+                            latLngBounds.extend(marker.position);
+                            (function (marker, data) {
+                                google.maps.event.addListener(marker, "click", function (e) {
+                                    infoWindow.setContent(data.description);
+                                    infoWindow.open(map, marker);
+                                });
+                            })(marker, data);
+                        }
 //                        map.setCenter(latLngBounds.getCenter());
 //                        map.fitBounds(latLngBounds);
 
