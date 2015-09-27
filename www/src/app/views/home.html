@@ -4,5 +4,6 @@
         <div class="home-screen-btn-show-details-wrapper">
             <button ng-click="startOrStop()" class="button button-block" ng-class="started ? 'stop-button button-assertive' : 'start-button button-energized'">{{started ? 'Stop' : 'Start'}}</button>
         </div>
+        <button ng-click="showCurrentRoute()" class="button button-block button-balanced" ng-disabled="!started">Show current route</button>
     </ion-content>
 </ion-view>
