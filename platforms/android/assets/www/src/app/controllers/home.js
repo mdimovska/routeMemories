@@ -4,10 +4,9 @@ angular.module('starter')
                         $scope,
                         $rootScope,
                         $state,
-                        $ionicSideMenuDelegate,
                         $ionicModal,
-                        $timeout,
-                        $cordovaGeolocation
+                        $cordovaGeolocation,
+                        $cordovaCamera
                         ) {
                     if ($rootScope.started === undefined) {
                         $rootScope.started = false;
@@ -156,7 +155,7 @@ angular.module('starter')
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
                         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                        
+
                         var infoWindow = new google.maps.InfoWindow();
                         var latLngBounds = new google.maps.LatLngBounds();
                         for (i = 0; i < $rootScope.markers.length; i++) {
@@ -211,6 +210,52 @@ angular.module('starter')
                         }
 
                     }
+
+
+                    $scope.takePicture = function () {
+
+//                        var options = {
+//                            destinationType: Camera.DestinationType.FILE_URI,
+//                            sourceType: Camera.PictureSourceType.CAMERA,
+//                        };
+
+//                            $cordovaCamera.getPicture(options).then(function (imageURI) {
+////                                var image = document.getElementById('myImage');
+////                                image.src = imageURI;
+//                                $scope.imgURI = imageURI;
+//                            }, function (err) {
+//                                // error
+//                                 alert("Can not take photo: " + JSON.stringify(err));
+////                                console.log("Can not take photo: " + JSON.stringify(err));
+//                            });
+                        var options = {
+                            quality: 50,
+                            destinationType: Camera.DestinationType.DATA_URL,
+                            sourceType: Camera.PictureSourceType.CAMERA,
+                            allowEdit: true,
+                            encodingType: Camera.EncodingType.JPEG,
+                            targetWidth: 100,
+                            targetHeight: 100,
+                            popoverOptions: CameraPopoverOptions,
+                            saveToPhotoAlbum: false,
+                            correctOrientation: true
+                        };
+
+                        $cordovaCamera.getPicture(options).then(function (imageData) {
+//                                var image = document.getElementById('myImage');
+//                                image.src = "data:image/jpeg;base64," + imageData;
+                            alert(imageData);
+                            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+
+                        }, function (err) {
+                            // error
+                            alert("Can not take photo: " + JSON.stringify(err));
+                            console.log("Can not take photo: " + JSON.stringify(err));
+                        });
+
+                    }
+
+
 
                 });
 

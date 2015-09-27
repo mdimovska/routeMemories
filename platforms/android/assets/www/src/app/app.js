@@ -27,7 +27,10 @@ angular.module('starter',
             });
         })
 
-        .config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+        .config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $compileProvider) {
+
+            $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+
             $stateProvider
 
                     .state('app', {

@@ -5,5 +5,9 @@
             <button ng-click="startOrStop()" class="button button-block" ng-class="started ? 'stop-button button-assertive' : 'start-button button-energized'">{{started ? 'Stop' : 'Start'}}</button>
         </div>
         <button ng-click="showCurrentRoute()" class="button button-block button-balanced" ng-disabled="!started">Show current route</button>
+
+        <button ng-click="takePicture()" class="button button-block button-calm" ng-disabled="!started">Take a picture</button>
+
+        <img class="image" ng-src="{{imgURI}}" ng-show="imgURI !== undefined">
     </ion-content>
 </ion-view>
