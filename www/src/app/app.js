@@ -27,7 +27,7 @@ angular.module('starter',
             });
         })
 
-        .config(function ($stateProvider, $urlRouterProvider) {
+        .config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
             $stateProvider
 
                     .state('app', {
@@ -76,11 +76,11 @@ angular.module('starter',
                     });
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('app/home');
-            
-//             uiGmapGoogleMapApiProvider.configure({
-//                key: 'AIzaSyD1Gu7s2Eh1LcXGDd4-88DqAbijwYH-iBk',
-//                v: '3.17',
-//                language: 'en',
-//                sensor: 'false',
-//            })
+
+            uiGmapGoogleMapApiProvider.configure({
+                key: 'AIzaSyAKPlgWt9AOvMkzqZQm9khRWb8zJNJDevc',
+                v: '3.17',
+                language: 'en',
+                sensor: 'false',
+            })
         });
