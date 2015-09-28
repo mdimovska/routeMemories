@@ -80,10 +80,10 @@ angular.module('starter',
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('app/home');
 
-//            uiGmapGoogleMapApiProvider.configure({
-//                key: 'AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0',
-//                v: '3.20',
-//                language: 'en',
-//                sensor: 'false',
-//            })
+            uiGmapGoogleMapApiProvider.configure({
+                key: 'AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0 ',
+                v: '3.20',
+                language: 'en',
+                sensor: 'false',
+            })
         });

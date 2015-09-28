@@ -6,7 +6,8 @@ angular.module('starter')
                         $state,
                         $ionicModal,
                         $cordovaGeolocation,
-                        $cordovaCamera
+                        $cordovaCamera,
+                        uiGmapGoogleMapApi
                         ) {
                     if ($rootScope.started === undefined) {
                         $rootScope.started = false;
@@ -32,7 +33,8 @@ angular.module('starter')
 
                     $scope.watchOptions = {
                         timeout: 10000,
-                        enableHighAccuracy: false // may cause errors if true
+                        enableHighAccuracy: true, // may cause errors if true
+                        maximumAge: 600000
                     };
 
                     $scope.appendPositionToLists = function (lat, lng) {
@@ -43,8 +45,12 @@ angular.module('starter')
                         console.log('lat: ' + lat + ', lng: ' + lng);
                         $rootScope.positionList.push(location);
 
-                        var latlng = new google.maps.LatLng(lat, lng);
-                        $rootScope.latLngList.push(latlng);
+// uiGmapGoogleMapApi is a promise.
+                        // The "then" callback function provides the google.maps object.
+                        uiGmapGoogleMapApi.then(function (maps) {
+                            var latlng = new maps.LatLng(lat, lng);
+                            $rootScope.latLngList.push(latlng);
+                        });
                     }
 
                     $scope.watchPositionChanges = function () {
@@ -65,7 +71,7 @@ angular.module('starter')
                     $scope.startOrStop = function () {
                         if (!$rootScope.started) {
                             // start watching location changes
-                            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+                            var posOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
                             $cordovaGeolocation
                                     .getCurrentPosition(posOptions)
                                     .then(function (position) {
@@ -136,15 +142,19 @@ angular.module('starter')
                     $scope.showCurrentRoute = function () {
                         $scope.showMapModal();
 
-                        showMap();
+                        // uiGmapGoogleMapApi is a promise.
+                        // The "then" callback function provides the google.maps object.
+                        uiGmapGoogleMapApi.then(function (maps) {
+                            showMap(maps);
+                        });
                     }
 
 
-                    var showMap = function () {
+                    var showMap = function (maps) {
                         // TODO change default center
-                        var mapCenter = new google.maps.LatLng(2, 1);
+                        var mapCenter = new maps.LatLng(2, 1);
                         if ($rootScope.positionList !== undefined && $rootScope.positionList.length > 0) {
-                            mapCenter = new google.maps.LatLng(
+                            mapCenter = new maps.LatLng(
                                     $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
                                     $rootScope.positionList[$rootScope.positionList.length - 1].longitude
                                     );
@@ -152,23 +162,23 @@ angular.module('starter')
                         var mapOptions = {
                             center: mapCenter,
                             zoom: 17,
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                            mapTypeId: maps.MapTypeId.ROADMAP
                         };
-                        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                        var map = new maps.Map(document.getElementById('map'), mapOptions);
 
-                        var infoWindow = new google.maps.InfoWindow();
-                        var latLngBounds = new google.maps.LatLngBounds();
+                        var infoWindow = new maps.InfoWindow();
+                        var latLngBounds = new maps.LatLngBounds();
                         for (i = 0; i < $rootScope.markers.length; i++) {
                             var data = $rootScope.markers[i];
-                            var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-                            var marker = new google.maps.Marker({
+                            var myLatlng = new maps.LatLng(data.lat, data.lng);
+                            var marker = new maps.Marker({
                                 position: myLatlng,
                                 map: map,
                                 title: data.title
                             });
                             latLngBounds.extend(marker.position);
                             (function (marker, data) {
-                                google.maps.event.addListener(marker, "click", function (e) {
+                                maps.event.addListener(marker, "click", function (e) {
                                     infoWindow.setContent(data.description);
                                     infoWindow.open(map, marker);
                                 });
@@ -180,13 +190,13 @@ angular.module('starter')
                         //***********ROUTING****************//
 
                         //Initialize the Path Array
-                        var path = new google.maps.MVCArray();
+                        var path = new maps.MVCArray();
 
                         //Initialize the Direction Service
-                        var service = new google.maps.DirectionsService();
+                        var service = new maps.DirectionsService();
 
                         //Set the Path Stroke Color
-                        var poly = new google.maps.Polyline({map: map, strokeColor: '#4986E7'});
+                        var poly = new maps.Polyline({map: map, strokeColor: '#4986E7'});
 
                         //Loop and Draw Path Route between the Points on MAP
                         for (var i = 0; i < $rootScope.latLngList.length; i++) {
@@ -198,9 +208,9 @@ angular.module('starter')
                                 service.route({
                                     origin: src,
                                     destination: des,
-                                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                                    travelMode: maps.DirectionsTravelMode.DRIVING
                                 }, function (result, status) {
-                                    if (status == google.maps.DirectionsStatus.OK) {
+                                    if (status == maps.DirectionsStatus.OK) {
                                         for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
                                             path.push(result.routes[0].overview_path[i]);
                                         }
@@ -244,7 +254,6 @@ angular.module('starter')
                         $cordovaCamera.getPicture(options).then(function (imageData) {
 //                                var image = document.getElementById('myImage');
 //                                image.src = "data:image/jpeg;base64," + imageData;
-                            alert(imageData);
                             $scope.imgURI = "data:image/jpeg;base64," + imageData;
 
                         }, function (err) {
