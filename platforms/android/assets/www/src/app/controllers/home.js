@@ -71,7 +71,7 @@ angular.module('starter')
                     $scope.startOrStop = function () {
                         if (!$rootScope.started) {
                             // start watching location changes
-                            var posOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
+                            var posOptions = {timeout: 20000, enableHighAccuracy: false, maximumAge: 600000};
                             $cordovaGeolocation
                                     .getCurrentPosition(posOptions)
                                     .then(function (position) {
