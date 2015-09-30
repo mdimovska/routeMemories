@@ -8,15 +8,26 @@ angular.module('starter')
                         $cordovaCamera,
                         uiGmapGoogleMapApi,
                         mapFactory) {
+
+                    $scope.clearCurrentRouteData = function () {
+                        console.log("Clearing current route data...");
+
+                        $rootScope.routeObject = {};
+                        $rootScope.routeObject.positionList = new Array();
+                        $rootScope.latLngList = new Array();
+                        $rootScope.routeObject.markers = new Array();
+                        $rootScope.routeObject.imgList = new Array();
+                        $rootScope.routeObject.startDate = '';
+                        $rootScope.routeObject.endDate = '';
+                        $rootScope.routeObject.routeName = '';
+
+                        $rootScope.startPosition = {};
+                    }
+
                     if ($rootScope.started === undefined) {
                         $rootScope.started = false;
                     }
-
-                    $rootScope.positionList = new Array();
-                    $rootScope.latLngList = new Array();
-                    $rootScope.markers = new Array();
-                    $rootScope.imgList = new Array();
-                    $rootScope.startPosition = {};
+                    $scope.clearCurrentRouteData(); //initialize route data
 
                     $scope.watchOptions = {
                         timeout: 10000,
@@ -30,7 +41,7 @@ angular.module('starter')
                             longitude: lng,
                         };
                         console.log('lat: ' + lat + ', lng: ' + lng);
-                        $rootScope.positionList.push(location);
+                        $rootScope.routeObject.positionList.push(location);
 
                         // uiGmapGoogleMapApi is a promise.
                         // The "then" callback function provides the google.maps object.
@@ -41,6 +52,7 @@ angular.module('starter')
                     }
 
                     $scope.watchPositionChanges = function () {
+                        console.log("Started watching postion changes...");
                         $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
                         $scope.watch.then(
                                 null,
@@ -75,9 +87,10 @@ angular.module('starter')
                                             "lng": lng,
                                             "description": "Start position"
                                         }
-                                        $scope.markers.push(marker);
+                                        $rootScope.routeObject.markers.push(marker);
 
                                         $rootScope.started = true;
+                                        $rootScope.routeObject.startDate = new Date();
                                         $scope.appendPositionToLists(lat, lng);
 
                                         // start watching location changes
@@ -89,31 +102,53 @@ angular.module('starter')
                                     });
                         } else {
                             $rootScope.started = false;
+                            $rootScope.routeObject.endDate = new Date();
 
                             // clear watch
-                            $scope.watch.clearWatch();
-                            // OR
-//                                $cordovaGeolocation.clearWatch($scope.watch)
-//                                        .then(function (result) {
-//                                            // success
-//                                            console.log('watch cleared');
-//                                        }, function (error) {
-//                                            // error
-//                                            console.log('An error occured while clearing watch: ' + JSON.stringify(error));
-//                                        });
+                            // TODO check this
+                            $scope.stopWatchingPositionChanges();
 
-                            // TODO save route to server
-                            // at the end, clear route data
-                            $rootScope.positionList = new Array();
-                            $rootScope.latLngList = new Array();
-                            $rootScope.markers = new Array();
-                            $rootScope.imgList = new Array();
-                            $rootScope.startPosition = {};
-
+                            $scope.showEndRouteModal();
                         }
 
                     }
 
+                    $scope.stopWatchingPositionChanges = function () {
+                        console.log("Stopped watching postion changes...");
+                        $scope.watch.clearWatch();
+                    }
+
+
+                    $scope.saveAndEndRoute = function () {
+                        console.log("Saving current route...");
+                        // TODO save route to server
+                        // if successfully saved, proceed with the following lines:
+
+                        // at the end, clear route data
+                        $rootScope.started = false;
+                        $scope.clearCurrentRouteData();
+
+                        // close dialog
+                        $scope.closeEndRouteModal();
+                    }
+
+                    $scope.deleteCurrentRoute = function () {
+                        console.log("Deleting current route...");
+                        // clear route data
+                        $rootScope.started = false;
+                        $scope.clearCurrentRouteData();
+                        // close dialog
+                        $scope.closeEndRouteModal();
+                    }
+
+                    $scope.continueCurrentRoute = function () {
+                        console.log("Continuing current route...");
+                        $rootScope.started = true;
+                        // continue watching location changes
+                        $scope.watchPositionChanges();
+                        // close dialog
+                        $scope.closeEndRouteModal();
+                    }
 
                     // Create the map modal that we will use later
                     $ionicModal.fromTemplateUrl('src/app/views/map.html', {
@@ -133,6 +168,25 @@ angular.module('starter')
                     };
 
 
+                    // Create the end route modal that we will use later
+                    $ionicModal.fromTemplateUrl('src/app/views/endRouteModal.html', {
+                        scope: $scope
+                    }).then(function (modal) {
+                        $scope.endRouteModal = modal;
+                    });
+
+                    // Triggered in the end route modal to close it
+                    $scope.closeEndRouteModal = function () {
+                        $scope.endRouteModal.hide();
+                    };
+
+                    // Open the end route modal
+                    $scope.showEndRouteModal = function () {
+                        $scope.endRouteModal.show();
+                    };
+
+
+
                     $scope.showCurrentRoute = function () {
                         $scope.showMapModal();
 
@@ -147,18 +201,18 @@ angular.module('starter')
                         // TODO change default center
                         // the center is the last position
                         var mapCenter = new maps.LatLng(42.000, 21.4333);
-                        if ($rootScope.positionList !== undefined && $rootScope.positionList.length > 0) {
+                        if ($rootScope.routeObject.positionList !== undefined && $rootScope.routeObject.positionList.length > 0) {
                             mapCenter = new maps.LatLng(
-                                    $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
-                                    $rootScope.positionList[$rootScope.positionList.length - 1].longitude
+                                    $rootScope.routeObject.positionList[$rootScope.routeObject.positionList.length - 1].latitude,
+                                    $rootScope.routeObject.positionList[$rootScope.routeObject.positionList.length - 1].longitude
                                     );
                         }
                         var mapElement = document.getElementById('map');
 
                         mapFactory.showMap(
                                 maps, mapCenter, mapElement,
-                                $rootScope.markers,
-                                $rootScope.imgList,
+                                $rootScope.routeObject.markers,
+                                $rootScope.routeObject.imgList,
                                 $rootScope.latLngList,
                                 false);
 
@@ -196,7 +250,7 @@ angular.module('starter')
                             "description": "Image",
                             "imageData": imageData
                         }
-                        $rootScope.imgList.push(image);
+                        $rootScope.routeObject.imgList.push(image);
                     }
 
                     $scope.appendMarkerToList = function (imageData) {
