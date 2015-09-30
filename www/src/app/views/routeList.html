@@ -1,0 +1,11 @@
+<ion-view view-title="My routes">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="route in routeList" ui-sref="app.route({routeId:route.id})">
+        {{route.title}}
+        {{route.startDate}}
+        {{route.endDate}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
