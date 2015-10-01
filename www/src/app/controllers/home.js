@@ -13,13 +13,15 @@ angular.module('starter')
                         console.log("Clearing current route data...");
 
                         $rootScope.routeObject = {};
-                        $rootScope.routeObject.positionList = new Array();
+                        $rootScope.positionList = new Array();
                         $rootScope.latLngList = new Array();
                         $rootScope.routeObject.markers = new Array();
                         $rootScope.routeObject.imgList = new Array();
+
                         $rootScope.routeObject.startDate = '';
                         $rootScope.routeObject.endDate = '';
                         $rootScope.routeObject.routeName = '';
+                        $rootScope.routeObject.positionListString = '';
 
                         $rootScope.startPosition = {};
                     }
@@ -39,9 +41,12 @@ angular.module('starter')
                         var location = {
                             latitude: lat,
                             longitude: lng,
+                            toString: function () {
+                                return this.latitude + "," + this.longitude;
+                            }
                         };
                         console.log('lat: ' + lat + ', lng: ' + lng);
-                        $rootScope.routeObject.positionList.push(location);
+                        $rootScope.positionList.push(location);
 
                         // uiGmapGoogleMapApi is a promise.
                         // The "then" callback function provides the google.maps object.
@@ -121,8 +126,14 @@ angular.module('starter')
 
                     $scope.saveAndEndRoute = function () {
                         console.log("Saving current route...");
+
+                        // join array of positions into one string
+                        $rootScope.routeObject.positionListString = $rootScope.positionList.join(";");
+                        // TODO check if should get and append end position?
+                        
                         // TODO save route to server
                         // if successfully saved, proceed with the following lines:
+
 
                         // at the end, clear route data
                         $rootScope.started = false;
@@ -201,10 +212,10 @@ angular.module('starter')
                         // TODO change default center
                         // the center is the last position
                         var mapCenter = new maps.LatLng(42.000, 21.4333);
-                        if ($rootScope.routeObject.positionList !== undefined && $rootScope.routeObject.positionList.length > 0) {
+                        if ($rootScope.positionList !== undefined && $rootScope.positionList.length > 0) {
                             mapCenter = new maps.LatLng(
-                                    $rootScope.routeObject.positionList[$rootScope.routeObject.positionList.length - 1].latitude,
-                                    $rootScope.routeObject.positionList[$rootScope.routeObject.positionList.length - 1].longitude
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].longitude
                                     );
                         }
                         var mapElement = document.getElementById('map');

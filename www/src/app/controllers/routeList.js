@@ -6,7 +6,8 @@ angular.module('starter')
                         $ionicModal,
                         $cordovaGeolocation,
                         $cordovaCamera,
-                        uiGmapGoogleMapApi) {
+                        uiGmapGoogleMapApi,
+                        routeDetailsFactory) {
 
                     $scope.routeList = [];
 
@@ -14,21 +15,26 @@ angular.module('starter')
                     $scope.routeList = [
                         {
                             id: 1,
-                            title: "Route 1",
+                            routeName: "Route 1",
                             startDate: new Date(),
-                            endDate: new Date()
+                            endDate: new Date(),
+                            latLngList: "42.0049747,21.3962856;42.0049747,21.3962856;42.0049747,21.3962856;41.946923, 21.493345"
                         },
                         {
                             id: 2,
-                            title: "Route 2",
+                            routeName: "Route 2",
                             startDate: new Date(),
                             endDate: new Date()
                         },
                         {
                             id: 3,
-                            title: "Route 3",
+                            routeName: "Route 3",
                             startDate: new Date(),
                             endDate: new Date()
                         }
                     ];
+
+                    $scope.setRouteDetails = function (route) {
+                        routeDetailsFactory.setTempRouteDetails(route);
+                    }
                 });
