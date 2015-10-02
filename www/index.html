@@ -33,11 +33,14 @@
         <script src="src/app/controllers/routeList.js"></script>
         <script src="src/app/controllers/route.js"></script>
         <script src="src/app/factories/mapFactory.js"></script>
-        
+
         <script src="src/app/factories/routeFactory.js"></script>
 
         <script src='lib/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
         <script src='lib/angular-google-maps/dist/angular-google-maps.min.js'></script>
+        <!--<script type="text/javascript" src="../plugins/phonegap-facebook-plugin/facebookConnectPlugin.js"></script>-->
+        <script type="text/javascript" src="lib/facebook-connect-plugin/index.js"></script>
+
     </head>
 
     <body>
@@ -48,7 +51,28 @@
         }
     </script>
     <!--<script async defer-->
-            <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0&callback=mapLoaded">-->
+    <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0&callback=mapLoaded">-->
     <!--</script>-->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '907283522693609',
+                xfbml: true,
+                version: 'v2.4'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>

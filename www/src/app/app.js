@@ -27,9 +27,22 @@ angular.module('starter',
             });
         })
 
-        .config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $compileProvider) {
+        .config(function ($stateProvider,
+                $urlRouterProvider,
+                uiGmapGoogleMapApiProvider,
+                $cordovaFacebookProvider,
+                $compileProvider) {
 
             $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
+
+            var appID = 907283522693609;
+            var version = "v2.4";
+            // Only required for development in browser, not cordova...
+//            $cordovaFacebookProvider.browserInit(appID, version);
+//            if (window.cordova.platformId === "browser") {
+//                facebookConnectPlugin.browserInit(appId, version);
+//                // version is optional. It refers to the version of API you may want to use.
+//            }
 
             $stateProvider
 
