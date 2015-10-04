@@ -1,5 +1,5 @@
 <ion-view view-title="">
-    <ion-content class="login-screen-content" scroll="false">
+    <ion-content class="loading-screen-content balanced-bg" scroll="false">
         <div class="image">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -13,15 +13,14 @@
                       c0-44.188,35.813-80,80-80S336,67.813,336,112z M304,112c0-26.5-21.5-48-48-48s-48,21.5-48,48s21.5,48,48,48S304,138.5,304,112z
                       M416,192h-75.063l-16.344,32h68.344l34.531,103.625l-11.031,12.188c11.75,10.625,17.844,20.406,17.875,20.438l3.375-2.031
                       L467.594,448H44.375l32.063-96.094c1.125,0.781,2,1.531,3.25,2.313l17-27.063c-3.813-2.406-6.938-4.781-9.688-7L119.063,224h68.375
-                      c-6.781-13.25-12.125-23.719-16.344-32H96L0,480h512L416,192z" fill="#4ecdc4"/>
+                      c-6.781-13.25-12.125-23.719-16.344-32H96L0,480h512L416,192z" fill="#fff"/>
             </svg>
         </div>
 
-        <div class="login-button">
-            <button ng-click="loginOrLogout()" class="button button-block button-positive" ng-disabled="isLoggedIn">
-                <!--<i ng-class="!isLoggedIn ? 'icon ion-social-facebook' : 'icon ion - social - tux'"></i>-->
-                Login with Facebook
-            </button>
+        <div class="text">
+            <p>
+                Loading ...
+            </p>
         </div>
     </ion-content>
 </ion-view>

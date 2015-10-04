@@ -10,24 +10,7 @@ angular.module('starter',
             'ngCordova',
             'uiGmapgoogle-maps'
         ])
-
-        .run(function ($ionicPlatform) {
-            $ionicPlatform.ready(function () {
-                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-                // for form inputs)
-                if (window.cordova && window.cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                    cordova.plugins.Keyboard.disableScroll(true);
-
-                }
-                if (window.StatusBar) {
-                    // org.apache.cordova.statusbar required
-                    StatusBar.styleDefault();
-                }
-            });
-        })
-
-        .config(function ($stateProvider,
+                .config(function ($stateProvider,
                 $urlRouterProvider,
                 uiGmapGoogleMapApiProvider,
                 $cordovaFacebookProvider,
@@ -82,8 +65,27 @@ angular.module('starter',
                             }
                         }
                     })
+
+                    .state('loading', {
+                        url: '/loading',
+                                templateUrl: 'src/app/views/loading.html',
+                                controller: 'LoadingCtrl'
+//                        views: {
+//                            'menuContent': {
+//                            }
+//                        }
+                    })
+                    .state('login', {
+                        url: '/login',
+                                templateUrl: 'src/app/views/login.html',
+                                controller: 'LoginCtrl'
+//                        views: {
+//                            'menuContent': {
+//                            }
+//                        }
+                    })
             // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('app/home');
+            $urlRouterProvider.otherwise('loading');
 
             uiGmapGoogleMapApiProvider.configure({
                 key: 'AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0 ',
@@ -91,4 +93,22 @@ angular.module('starter',
                 language: 'en',
                 sensor: 'false',
             })
-        });
+        })
+
+        .run(function ($ionicPlatform) {
+            $ionicPlatform.ready(function () {
+                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+                // for form inputs)
+                if (window.cordova && window.cordova.plugins.Keyboard) {
+                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                    cordova.plugins.Keyboard.disableScroll(true);
+
+                }
+                if (window.StatusBar) {
+                    // org.apache.cordova.statusbar required
+                    StatusBar.styleDefault();
+                }
+            });
+        })
+
+;

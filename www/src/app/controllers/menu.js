@@ -16,7 +16,7 @@ angular.module('starter')
                     }
 
                     // Create the login modal that we will use later
-                    $ionicModal.fromTemplateUrl('src/app/views/login.html', {
+                    $ionicModal.fromTemplateUrl('src/app/views/loginDialog.html', {
                         scope: $scope
                     }).then(function (modal) {
                         $scope.modal = modal;
@@ -71,6 +71,7 @@ angular.module('starter')
                                         $rootScope.userName = "";
                                         $rootScope.userId = "";
                                         $rootScope.isLoggedIn = false;
+                                        $state.go('login');
                                     }, function (error) {
                                         console.log("An error occured while logging out: " + JSON.stringify(error));
                                     });
