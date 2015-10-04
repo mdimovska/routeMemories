@@ -99,7 +99,7 @@ angular.module('starter')
                 var service = new maps.DirectionsService();
 
                 //Set the Path Stroke Color
-                var poly = new maps.Polyline({map: map, strokeColor: '#4986E7'});
+                var poly = new maps.Polyline({map: map, strokeColor: '#16a085'});
 
                 //Loop and Draw Path Route between the Points on MAP
                 if (latLngList !== undefined && latLngList !== null) {

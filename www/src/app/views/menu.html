@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
-        <ion-nav-bar class="bar-stable">
+        <ion-nav-bar class="bar-balanced">
             <ion-nav-back-button>
             </ion-nav-back-button>
 
@@ -13,27 +13,32 @@
     </ion-side-menu-content>
 
     <ion-side-menu side="left">
-        <ion-header-bar class="bar-stable">
+        <ion-header-bar class="bar-balanced" ng-show="!isLoggedIn">
             <h1 class="title"></h1>
         </ion-header-bar>
-        <ion-content>
+        <ion-content class="item-balanced balanced-bg">
             <ion-list>
-                <ion-item ng-show="isLoggedIn">
-                    <p>You are logged in as</p>
-                    <img src="//graph.facebook.com/{{userId}}/picture?width=80&height=80">
-                    <p>{{userName}}</p>
+                <ion-item ng-show="isLoggedIn" class="person-info item-balanced">
+                    <div class="person-image-wrapper">
+                        <img class="person-image" src="//graph.facebook.com/{{userId}}/picture?width=80&height=80">
+                    </div>
+
+                    <p class="person-info">{{userName}}</p>
                 </ion-item>
-                <ion-item ng-show="!isLoggedIn">
-                    <p>You are not logged in</p>
-                </ion-item>
-                <ion-item menu-close ng-click="loginOrLogout()">
-                    {{isLoggedIn ? 'Logout' : 'Login with fb'}}
-                </ion-item>
-                <ion-item menu-close ui-sref="app.home">
+                <!--                <ion-item ng-show="!isLoggedIn">
+                                    <p>You are not logged in</p>
+                                </ion-item>-->
+                <ion-item menu-close ui-sref="app.home" class="item-icon-left menu-icon item-balanced">
+                    <i class="icon ion-home"></i>
                     Home
                 </ion-item>
-                <ion-item menu-close ui-sref="app.routeList">
+                <ion-item menu-close ui-sref="app.routeList" class="item-icon-left menu-icon item-balanced">
+                    <i class="icon ion-map"></i>
                     My routes
+                </ion-item>
+                <ion-item menu-close ng-click="loginOrLogout()" class="item-icon-left menu-icon item-balanced">
+                    <i ng-class="!isLoggedIn ? 'icon ion-social-facebook' : 'icon ion-social-tux'"></i>
+                    {{isLoggedIn ? 'Logout' : 'Login with Facebook'}}
                 </ion-item>
             </ion-list>
         </ion-content>

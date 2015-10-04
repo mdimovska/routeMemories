@@ -1,8 +1,16 @@
-<ion-view view-title="Home">
+<ion-view view-title="Route Memories">
     <ion-content class="home-screen-content" scroll="false">
-        <h1>Home</h1>
         <div class="home-screen-btn-show-details-wrapper">
-            <button ng-click="startOrStop()" class="button button-block" ng-class="started ? 'stop-button button-assertive' : 'start-button button-energized'">{{started ? 'Stop' : 'Start'}}</button>
+            <!--            <button ng-click="startOrStop()" 
+                                class="button button-block" 
+                                ng-class="started ? 'stop-button button-assertive' : 'start-button button-energized'">
+                            {{started ? 'Stop' : 'Start'}}
+                        </button>-->
+            <button ng-click="startOrStop()" 
+                    class="start-stop-button" 
+                    ng-class="started ? 'stop-button' : 'start-button'">
+                <!--{{started ? 'Stop' : 'Start'}}-->
+            </button>
         </div>
         <button ng-click="showCurrentRoute()" class="button button-block button-balanced" ng-disabled="!started">Show current route</button>
 
