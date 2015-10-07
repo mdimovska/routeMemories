@@ -14,6 +14,9 @@ angular.module('starter')
                     if ($rootScope.isLoggedIn === undefined) {
                         $rootScope.isLoggedIn = false;
                     }
+                    if (!$rootScope.isLoggedIn) {
+                        $state.go('login');
+                    }
 
                     // Create the login modal that we will use later
                     $ionicModal.fromTemplateUrl('src/app/views/loginDialog.html', {

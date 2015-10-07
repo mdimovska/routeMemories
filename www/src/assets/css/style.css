@@ -174,3 +174,9 @@ ion-item.person-info {
     right: 0;
     z-index: -1;
 }
+.end-route-content .save-route-button {
+    margin-top: 30px;
+}
+.end-route-content .delete-route-button {
+    float: right;
+}

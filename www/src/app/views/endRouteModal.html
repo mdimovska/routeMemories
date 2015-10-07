@@ -1,11 +1,11 @@
 <ion-modal-view>
-    <ion-header-bar>
+    <ion-header-bar class="bar-balanced">
         <h1 class="title">Save Route?</h1>
         <div class="buttons">
             <button class="button button-clear" ng-click="continueCurrentRoute()">Close</button>
         </div>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="end-route-content">
         <div class="list">
             <label class="item item-input">
                 <span class="input-label">Route name:</span>
@@ -13,21 +13,21 @@
             </label>
             <label class="item item-input">
                 <span class="input-label">Start:</span>
-                <p>{{routeObject.startDate}}</p>
+                <p>{{routeObject.startDate | date : 'medium'}}</p>
             </label>
             <label class="item item-input">
                 <span class="input-label">End</span>
-                <p>{{routeObject.endDate}}</p>
+                <p>{{routeObject.endDate | date: 'medium'}}</p>
             </label>
-            <label class="item">
-                <button class="button button-block button-balanced" ng-click="saveAndEndRoute()">Save route</button>
-            </label>
-            <label class="item">
+<!--            <label class="item">-->
+                <button class="button button-block button-balanced save-route-button" ng-click="saveAndEndRoute()">Save route</button>
+            <!--</label>-->
+<!--            <label class="item">
                 <button class="button button-block button-energized" ng-click="continueCurrentRoute()">Continue</button>
-            </label>
-            <label class="item">
-                <button class="button button-block button-assertive" ng-click="deleteCurrentRoute()">Delete route</button>
-            </label>
+            </label>-->
+            <!--<label class="item delete-route-button">-->
+                <button class="button button-clear button-assertive delete-route-button" ng-click="deleteCurrentRoute()">Delete route</button>
+            <!--</label>-->
 
         </div>
     </ion-content>
