@@ -47,6 +47,7 @@ angular.module('starter')
                                         $rootScope.userName = "";
                                         $rootScope.userId = "";
                                         $rootScope.isLoggedIn = false;
+                                        $rootScope.stopWatchingPositionChanges();
                                         $state.go('login');
                                     }, function (error) {
                                         console.log("An error occured while logging out: " + JSON.stringify(error));
