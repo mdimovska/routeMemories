@@ -80,7 +80,7 @@ angular.module('starter')
                                 {
                                     var distance = parseFloat(response.routes[0].legs[0].distance.value);
                                     console.log('distance: ' + distance);
-                                    if (distance >= 15) {
+                                    if (distance < 30) {
                                         // append position to list
                                         console.log("appending position to list");
                                         $scope.appendPositionToLists(latitude, longitude);
