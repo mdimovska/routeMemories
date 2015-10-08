@@ -2,9 +2,8 @@
     <ion-content>
         <ion-list>
             <ion-item ng-repeat="route in routeList" ui-sref="app.route({routeId:route.id})" ng-click="setRouteDetails(route)">
-                {{route.routeName}}
-                {{route.startDate}}
-                {{route.endDate}}
+                <p>{{route.routeName}}</p>
+                <p>{{route.startDate| date : 'medium'}}</p>
             </ion-item>
         </ion-list>
     </ion-content>

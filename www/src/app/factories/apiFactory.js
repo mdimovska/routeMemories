@@ -64,52 +64,31 @@ angular.module('starter')
                 return def.promise;
             }
 
-            apiFactory.getSearchResults = function (query, location) {
-                var searchUrl = apiFactory.getSearchUrl(query, location);
+            apiFactory.getRoutesByUser = function (userId) {
+                var url = apiFactory.getRoutesByUserUrl(userId);
                 var def = $q.defer();
-                $http.get(searchUrl)
+                $http.get(url)
                         .success(function (data) {
                             def.resolve(data);
                         })
                         .error(function () {
-                            def.reject("Failed to get search results");
+                            def.reject("Failed to get route list by user");
                         });
                 return def.promise;
             }
 
-            function getRandomNumber(toNumber) {
-                return Math.floor((Math.random() * toNumber));
-            }
-            function getRandom(list) {
-                return list[Math.floor((Math.random() * list.length))];
-            }
-
-            apiFactory.getRandomPlace = function (location) {
-                var categories = apiFactory.getCategories();
-
-                //get random category
-                var categoryId = getRandom(categories).id;
-
-                var def = $q.defer();
-                var placesUrl = apiFactory.getPlacesUrl(categoryId, location);
-
-                $http.get(placesUrl)
-                        .success(function (data) {
-                            var i = getRandomNumber(data.response.groups[0].items.length);
-                            var result = data.response.groups[0].items[i];
-                            def.resolve(result);
-                        })
-                        .error(function () {
-                            def.reject("Failed to get random place");
-                        });
-                return def.promise;
-            }
             apiFactory.getBaseUrl = function () {
-                return "http://localhost:8080"; //TODO change when everything is up and running on heroku
+                return "http://localhost:5000/"; //TODO change when everything is up and running on heroku
+//                return "https://shrouded-fjord-6158.herokuapp.com/";
             }
             apiFactory.getRegisterUrl = function () {
-                return apiFactory.getBaseUrl() + "/register";
+                return apiFactory.getBaseUrl() + "register";
             }
+            apiFactory.getRoutesByUserUrl = function (userId) {
+                return apiFactory.getBaseUrl() + "routes/getRoutesByUser?userId=" + userId;
+//                return apiFactory.getBaseUrl() + "routes";
+            }
+
             apiFactory.register = function (id, name, pictureUrl) {
                 console.log(id);
                 console.log(name);
