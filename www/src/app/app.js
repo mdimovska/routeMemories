@@ -8,9 +8,10 @@ angular.module('starter',
         [
             'ionic',
             'ngCordova',
-            'uiGmapgoogle-maps'
+            'uiGmapgoogle-maps',
+            'RequestInterceptor'
         ])
-                .config(function ($stateProvider,
+        .config(function ($stateProvider,
                 $urlRouterProvider,
                 uiGmapGoogleMapApiProvider,
                 $cordovaFacebookProvider,
@@ -68,8 +69,8 @@ angular.module('starter',
 
                     .state('loading', {
                         url: '/loading',
-                                templateUrl: 'src/app/views/loading.html',
-                                controller: 'LoadingCtrl'
+                        templateUrl: 'src/app/views/loading.html',
+                        controller: 'LoadingCtrl'
 //                        views: {
 //                            'menuContent': {
 //                            }
@@ -77,8 +78,8 @@ angular.module('starter',
                     })
                     .state('login', {
                         url: '/login',
-                                templateUrl: 'src/app/views/login.html',
-                                controller: 'LoginCtrl'
+                        templateUrl: 'src/app/views/login.html',
+                        controller: 'LoginCtrl'
 //                        views: {
 //                            'menuContent': {
 //                            }
@@ -109,6 +110,21 @@ angular.module('starter',
                     StatusBar.styleDefault();
                 }
             });
-        })
+        });
 
-;
+// request interceptor
+angular.module('RequestInterceptor', [])
+        .config(function ($httpProvider) {
+            $httpProvider.interceptors.push('requestInterceptor');
+        }).factory('requestInterceptor', [
+    function () {
+        return {
+            'request': function (config) {
+                if (config.url.indexOf('http') > -1) {
+                    config.cache = false;
+                }
+                return config;
+            }
+
+        };
+    }]);

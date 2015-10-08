@@ -4,7 +4,6 @@ angular.module('starter')
                         $scope,
                         $rootScope,
                         $state,
-                        $ionicSideMenuDelegate,
                         $ionicModal,
                         $timeout,
                         $cordovaFacebook
@@ -37,35 +36,9 @@ angular.module('starter')
 
                     // Perform the login action when the user submits the login form
                     $scope.loginOrLogout = function () {
-                        console.log('Doing login', $scope.loginData);
+                        console.log('Logging out');
 
-                        if (!$rootScope.isLoggedIn) {
-                            $cordovaFacebook.login(["public_profile", "email", "user_friends"])
-                                    .then(function (success) {
-                                        // { id: "634565435",
-                                        //   lastName: "bob"
-                                        //   ...
-                                        // }
-                                        console.log(JSON.stringify(success));
-                                        $rootScope.isLoggedIn = true;
-
-                                        // get info about logged in user
-                                        $cordovaFacebook.api("me", ["public_profile"])
-                                                .then(function (success) {
-                                                    // success
-                                                    console.log("Successfully retrieved user info: " + JSON.stringify(success));
-                                                    $rootScope.userName = success.name;
-                                                    $rootScope.userId = success.id;
-
-                                                }, function (error) {
-                                                    console.log("An error occured while getting user info: " + JSON.stringify(error));
-                                                });
-
-                                        $scope.closeLogin();
-                                    }, function (error) {
-                                        console.log("An error occured while logging in: " + JSON.stringify(error));
-                                    });
-                        } else {
+                        if ($rootScope.isLoggedIn) {
                             // logout
                             $cordovaFacebook.logout()
                                     .then(function (success) {
@@ -80,13 +53,5 @@ angular.module('starter')
                                     });
                         }
                     };
-
-                    $scope.doLogin = function () {
-                        // Simulate a login delay. Remove this and replace with your login
-                        // code if using a login system
-//                        $timeout(function () {
-//                            $scope.closeLogin();
-//                        }, 1000);
-                    }
                 });
 
