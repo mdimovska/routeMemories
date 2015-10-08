@@ -56,6 +56,44 @@ angular.module('starter')
                         });
                     }
 
+                    function calculateDistanceAndAppendOrRejectPosition(latitude, longitude) {
+                        uiGmapGoogleMapApi.then(function (maps) {
+                            // calculate distance from the last position
+                            // if distance < 15m, do not append the position to the list
+                            var location1 = new maps.LatLng(
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].longitude
+                                    );
+                            var location2 = new maps.LatLng(
+                                    latitude,
+                                    longitude);
+
+                            directionsService = new maps.DirectionsService();
+                            directionsDisplay = new maps.DirectionsRenderer({
+                                suppressMarkers: true,
+                                suppressInfoWindows: true
+                            });
+                            var request = {
+                                origin: location1,
+                                destination: location2,
+                                travelMode: google.maps.DirectionsTravelMode.WALKING
+                            };
+                            directionsService.route(request, function (response, status) {
+                                console.log('status: ' + status);
+                                if (status == google.maps.DirectionsStatus.OK)
+                                {
+                                    var distance = parseFloat(response.routes[0].legs[0].distance.value);
+                                    console.log('distance: ' + distance);
+                                    if (distance >= 15) {
+                                        // append position to list
+                                        console.log("appending position to list");
+                                        $scope.appendPositionToLists(latitude, longitude);
+                                    }
+                                }
+                            });
+                        });
+                    };
+
                     $scope.watchPositionChanges = function () {
                         console.log("Started watching postion changes...");
                         $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
@@ -68,7 +106,7 @@ angular.module('starter')
                                 function (position) {
                                     var lat = position.coords.latitude;
                                     var lng = position.coords.longitude;
-                                    $scope.appendPositionToLists(lat, lng);
+                                    calculateDistanceAndAppendOrRejectPosition(lat, lng);
                                 });
                     }
 
