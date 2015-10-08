@@ -2,12 +2,12 @@ angular.module('starter')
         .controller('HomeCtrl',
                 function ($scope,
                         $rootScope,
-                        $state,
                         $ionicModal,
                         $cordovaGeolocation,
                         $cordovaCamera,
                         uiGmapGoogleMapApi,
-                        mapFactory) {
+                        mapFactory,
+                        apiFactory) {
 
                     $scope.clearCurrentRouteData = function () {
                         console.log("Clearing current route data...");
@@ -130,17 +130,22 @@ angular.module('starter')
                         // join array of positions into one string
                         $rootScope.routeObject.positionListString = $rootScope.positionList.join(";");
                         // TODO check if should get and append end position?
-                        
-                        // TODO save route to server
-                        // if successfully saved, proceed with the following lines:
 
+                        // save route to server
+                        apiFactory.addRoute($rootScope.routeObject, $rootScope.userId)
+                                .then(function (success) {
+                                    // if successfully saved, proceed with the following lines:
 
-                        // at the end, clear route data
-                        $rootScope.started = false;
-                        $scope.clearCurrentRouteData();
+                                    // at the end, clear route data
+                                    $rootScope.started = false;
+                                    $scope.clearCurrentRouteData();
 
-                        // close dialog
-                        $scope.closeEndRouteModal();
+                                    // close dialog
+                                    $scope.closeEndRouteModal();
+
+                                }, function (error) {
+                                    console.log('Route saving failed. Error: ' + JSON.stringify(error));
+                                });
                     }
 
                     $scope.deleteCurrentRoute = function () {
