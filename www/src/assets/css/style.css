@@ -175,8 +175,13 @@ ion-item.person-info {
     z-index: -1;
 }
 .end-route-content .save-route-button {
-    margin-top: 30px;
-}
+    margin-bottom: 0;}
 .end-route-content .delete-route-button {
     float: right;
+    margin-right: 10px;
+}
+
+.end-route-content .item.save-route-wrapper {
+    border-bottom: 0 none;
+    padding-bottom: 5px;
 }
