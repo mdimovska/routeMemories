@@ -4,8 +4,8 @@ angular.module('starter')
             var apiFactory = {};
 
             apiFactory.getBaseUrl = function () {
-//                return "http://localhost:5000/"; //TODO change when everything is up and running on heroku
-                return "https://shrouded-fjord-6158.herokuapp.com/";
+                return "http://localhost:5000/"; //TODO change when everything is up and running on heroku
+//                return "https://shrouded-fjord-6158.herokuapp.com/";
             }
             apiFactory.getRegisterUrl = function () {
                 return apiFactory.getBaseUrl() + "register";
@@ -16,6 +16,9 @@ angular.module('starter')
             }
             apiFactory.getAddRouteUrl = function () {
                 return apiFactory.getBaseUrl() + "routes";
+            }
+            apiFactory.getDeleteRouteUrl = function (routeId) {
+                return apiFactory.getBaseUrl() + "routes/" + routeId;
             }
 
             apiFactory.register = function (id, name, pictureUrl) {
@@ -93,6 +96,19 @@ angular.module('starter')
                         })
                         .error(function () {
                             def.reject("Failed to get route list by user");
+                        });
+                return def.promise;
+            }
+            
+             apiFactory.deleteRoute = function (routeId) {
+                var url = apiFactory.getDeleteRouteUrl(routeId);
+                var def = $q.defer();
+                $http.delete(url)
+                        .success(function (data) {
+                            def.resolve(data);
+                        })
+                        .error(function () {
+                            def.reject("Failed to delete route");
                         });
                 return def.promise;
             }

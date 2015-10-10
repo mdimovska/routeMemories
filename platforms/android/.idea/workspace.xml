@@ -27,7 +27,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/login.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/map.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/map.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/factories/mapFactory.js" afterPath="$PROJECT_DIR$/assets/www/src/app/factories/mapFactory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" />
