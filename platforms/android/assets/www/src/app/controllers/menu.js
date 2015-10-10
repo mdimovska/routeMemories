@@ -2,16 +2,23 @@ angular.module('starter')
         .controller('MenuCtrl',
                 function (
                         $scope,
+                        $rootScope,
                         $state,
-                        $ionicSideMenuDelegate,
                         $ionicModal,
-                        $timeout
+                        $timeout,
+                        $cordovaFacebook
                         ) {
                     // Form data for the login modal
                     $scope.loginData = {};
+                    if ($rootScope.isLoggedIn === undefined) {
+                        $rootScope.isLoggedIn = false;
+                    }
+                    if (!$rootScope.isLoggedIn) {
+                        $state.go('login');
+                    }
 
                     // Create the login modal that we will use later
-                    $ionicModal.fromTemplateUrl('src/app/views/login.html', {
+                    $ionicModal.fromTemplateUrl('src/app/views/loginDialog.html', {
                         scope: $scope
                     }).then(function (modal) {
                         $scope.modal = modal;
@@ -28,14 +35,24 @@ angular.module('starter')
                     };
 
                     // Perform the login action when the user submits the login form
-                    $scope.doLogin = function () {
-                        console.log('Doing login', $scope.loginData);
+                    $scope.loginOrLogout = function () {
+                        console.log('Logging out');
 
-                        // Simulate a login delay. Remove this and replace with your login
-                        // code if using a login system
-                        $timeout(function () {
-                            $scope.closeLogin();
-                        }, 1000);
+                        if ($rootScope.isLoggedIn) {
+                            // logout
+                            $cordovaFacebook.logout()
+                                    .then(function (success) {
+                                        // success
+                                        console.log("Successfully logged out");
+                                        $rootScope.userName = "";
+                                        $rootScope.userId = "";
+                                        $rootScope.isLoggedIn = false;
+                                        $rootScope.stopWatchingPositionChanges();
+                                        $state.go('login');
+                                    }, function (error) {
+                                        console.log("An error occured while logging out: " + JSON.stringify(error));
+                                    });
+                        }
                     };
                 });
 

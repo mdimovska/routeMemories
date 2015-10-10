@@ -7,10 +7,10 @@
                     {{route.routeName}}
                 </div>
                 <div class="item">
-                    Start: {{route.startDate}}
+                    Start: {{route.startDate | date : 'medium'}}
                 </div>
                 <div class="item">
-                    End: {{route.endDate}}
+                    End: {{route.endDate | date : 'medium'}}
                 </div>
             </div>
         </div>

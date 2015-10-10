@@ -8,29 +8,32 @@ angular.module('starter',
         [
             'ionic',
             'ngCordova',
-            'uiGmapgoogle-maps'
+            'uiGmapgoogle-maps',
+            'RequestInterceptor',
         ])
-
-        .run(function ($ionicPlatform) {
-            $ionicPlatform.ready(function () {
-                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-                // for form inputs)
-                if (window.cordova && window.cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                    cordova.plugins.Keyboard.disableScroll(true);
-
-                }
-                if (window.StatusBar) {
-                    // org.apache.cordova.statusbar required
-                    StatusBar.styleDefault();
-                }
-            });
-        })
-
-        .config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $compileProvider) {
+        .config(function ($stateProvider,
+                $urlRouterProvider,
+                uiGmapGoogleMapApiProvider,
+//                $cordovaFacebookProvider,
+//                $cordovaFacebook,
+                $compileProvider) {
 
             $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
 
+            var appID = 907283522693609;
+            var version = "v2.4";
+
+            // Only required for development in browser, not cordova...
+//            $cordovaFacebookProvider.browserInit(appID, version);
+//            if (window.cordova.platformId === "browser") {
+//                facebookConnectPlugin.browserInit(appId, version);
+//                // version is optional. It refers to the version of API you may want to use.
+//            }
+
+            if (!window.cordova) {
+//                var appId = prompt("Enter FB Application ID", "");
+//               facebookConnectPlugin.browserInit(appID, version);
+            }
             $stateProvider
 
                     .state('app', {
@@ -69,8 +72,27 @@ angular.module('starter',
                             }
                         }
                     })
+
+                    .state('loading', {
+                        url: '/loading',
+                        templateUrl: 'src/app/views/loading.html',
+                        controller: 'LoadingCtrl'
+//                        views: {
+//                            'menuContent': {
+//                            }
+//                        }
+                    })
+                    .state('login', {
+                        url: '/login',
+                        templateUrl: 'src/app/views/login.html',
+                        controller: 'LoginCtrl'
+//                        views: {
+//                            'menuContent': {
+//                            }
+//                        }
+                    })
             // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('app/home');
+            $urlRouterProvider.otherwise('loading');
 
             uiGmapGoogleMapApiProvider.configure({
                 key: 'AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0 ',
@@ -78,4 +100,37 @@ angular.module('starter',
                 language: 'en',
                 sensor: 'false',
             })
+        })
+
+        .run(function ($ionicPlatform) {
+            $ionicPlatform.ready(function () {
+                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+                // for form inputs)
+                if (window.cordova && window.cordova.plugins.Keyboard) {
+                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                    cordova.plugins.Keyboard.disableScroll(true);
+
+                }
+                if (window.StatusBar) {
+                    // org.apache.cordova.statusbar required
+                    StatusBar.styleDefault();
+                }
+            });
         });
+
+// request interceptor
+angular.module('RequestInterceptor', [])
+        .config(function ($httpProvider) {
+            $httpProvider.interceptors.push('requestInterceptor');
+        }).factory('requestInterceptor', [
+    function () {
+        return {
+            'request': function (config) {
+                if (config.url.indexOf('http') > -1) {
+                    config.cache = false;
+                }
+                return config;
+            }
+
+        };
+    }]);

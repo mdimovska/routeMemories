@@ -9,18 +9,20 @@ angular.module('starter',
             'ionic',
             'ngCordova',
             'uiGmapgoogle-maps',
-            'RequestInterceptor'
+            'RequestInterceptor',
         ])
         .config(function ($stateProvider,
                 $urlRouterProvider,
                 uiGmapGoogleMapApiProvider,
-                $cordovaFacebookProvider,
+//                $cordovaFacebookProvider,
+//                $cordovaFacebook,
                 $compileProvider) {
 
             $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
 
             var appID = 907283522693609;
             var version = "v2.4";
+
             // Only required for development in browser, not cordova...
 //            $cordovaFacebookProvider.browserInit(appID, version);
 //            if (window.cordova.platformId === "browser") {
@@ -28,6 +30,10 @@ angular.module('starter',
 //                // version is optional. It refers to the version of API you may want to use.
 //            }
 
+            if (!window.cordova) {
+//                var appId = prompt("Enter FB Application ID", "");
+//               facebookConnectPlugin.browserInit(appID, version);
+            }
             $stateProvider
 
                     .state('app', {
