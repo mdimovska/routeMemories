@@ -58,6 +58,16 @@ angular.module('starter')
                 console.log(route.startDate);
                 console.log(route.endDate);
                 console.log(route.routeName);
+                console.log(route.imgList);
+
+                // TODO delete
+//                var image = {
+//                    "dateTaken": route.startDate,
+//                    "lat": "42.0049747",
+//                    "lng": "21.3962856",
+//                    "imageData": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTAgNTAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwb2x5bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiNjODI3MjciIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHBvaW50cz0iDQoJNywyOC44NTIgMjEuOTIxLDQyLjM0OCA0Myw5LjY1MiAiLz4NCjwvc3ZnPg0K"
+//                }
+//                route.imgList.push(image);
 
                 var def = $q.defer();
                 var url = apiFactory.getAddRouteUrl();
@@ -67,7 +77,8 @@ angular.module('starter')
                     'latLngList': route.positionListString,
                     'startDate': route.startDate,
                     'endDate': route.endDate,
-                    'routeName': route.routeName
+                    'routeName': route.routeName,
+                    'imgList': route.imgList
                 });
 
                 $http({
@@ -99,8 +110,8 @@ angular.module('starter')
                         });
                 return def.promise;
             }
-            
-             apiFactory.deleteRoute = function (routeId) {
+
+            apiFactory.deleteRoute = function (routeId) {
                 var url = apiFactory.getDeleteRouteUrl(routeId);
                 var def = $q.defer();
                 $http.delete(url)

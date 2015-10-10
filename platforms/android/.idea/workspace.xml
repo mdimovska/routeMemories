@@ -13,29 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fe35f6a-4133-4bef-aa4a-acbefb5eb890" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../../www/src/app/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/app.js" afterPath="$PROJECT_DIR$/assets/www/src/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/app.js" afterPath="$PROJECT_DIR$/../../www/src/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/endRouteModal.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/endRouteModal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/home.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/home.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/login.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/map.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/map.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/factories/mapFactory.js" afterPath="$PROJECT_DIR$/assets/www/src/app/factories/mapFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/menu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/route.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/route.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/routeList.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/routeList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/routeList.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/routeList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/assets/css/style.css" afterPath="$PROJECT_DIR$/assets/www/src/assets/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/views/routeList.html" afterPath="$PROJECT_DIR$/../../www/src/app/views/routeList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/routeList.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/routeList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
