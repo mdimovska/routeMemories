@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0058DEF9550840FB942907D7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F68134AB19942308B3075F9 /* libsqlite3.dylib */; };
 		037408248F5D49A0BC9EC086 /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9185A8B370714853B1BDF9B6 /* CDVJpegHeaderWriter.m */; };

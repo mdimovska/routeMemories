@@ -6,59 +6,62 @@
         <option name="name" value="app: com.ionicframework.starter" />
         <option name="packageNamePattern" value="com.ionicframework.starter" />
       </filter>
+      <filter>
+        <option name="name" value="app: com.polarcape.intern" />
+        <option name="packageNamePattern" value="com.polarcape.intern" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.ionicframework.starter" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.polarcape.intern" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fe35f6a-4133-4bef-aa4a-acbefb5eb890" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/controllers.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/values/facebookconnect.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/controllers.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/playlist.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/playlists.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/search.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib/FacebookLib.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.xcworkspace/xcuserdata/gkopevski.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.xcworkspace/xcuserdata/gkopevski.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/../ios/www/lib/ionic/css/ionic.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova/HelloCordova-Info.plist" afterPath="$PROJECT_DIR$/../ios/HelloCordova/HelloCordova-Info.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/android.json" afterPath="$PROJECT_DIR$/../../plugins/android.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/assets/www/src/app/factories/apiFactory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/factories/apiFactory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../../www/src/app/factories/apiFactory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/app.js" afterPath="$PROJECT_DIR$/assets/www/src/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/app.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/app.js" afterPath="$PROJECT_DIR$/../../www/src/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova/config.xml" afterPath="$PROJECT_DIR$/../ios/HelloCordova/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/assets/www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/../ios/www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/fetch.json" afterPath="$PROJECT_DIR$/../../plugins/fetch.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/home.html" afterPath="$PROJECT_DIR$/../ios/www/src/app/views/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/home.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/facebookconnect.xml" afterPath="$PROJECT_DIR$/res/values/facebookconnect.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/index.html" afterPath="$PROJECT_DIR$/../ios/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/ios.json" afterPath="$PROJECT_DIR$/../../plugins/ios.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/facebook-connect-plugin/index.js" afterPath="$PROJECT_DIR$/assets/www/lib/facebook-connect-plugin/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/lib/facebook-connect-plugin/index.js" afterPath="$PROJECT_DIR$/../ios/www/lib/facebook-connect-plugin/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/lib/facebook-connect-plugin/index.js" afterPath="$PROJECT_DIR$/../../www/lib/facebook-connect-plugin/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/loading.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/loading.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/loading.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/loading.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/loading.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/loading.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/login.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/login.html" afterPath="$PROJECT_DIR$/../ios/www/src/app/views/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/views/login.html" afterPath="$PROJECT_DIR$/../../www/src/app/views/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/map.html" afterPath="$PROJECT_DIR$/../ios/www/src/app/views/map.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/../ios/www/src/app/views/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/../../www/src/app/views/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/menu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../www/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/routeList.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/routeList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/routeList.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/routeList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/assets/css/style.css" afterPath="$PROJECT_DIR$/../ios/www/src/assets/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../www/.idea/workspace.xml" />
     </list>
@@ -164,7 +167,7 @@
                 <option name="path" value="$PROJECT_DIR$/phonegap-facebook-plugin" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
-                <option name="name" value=":phonegap-facebook-plugin:FacebookLib" />
+                <option name="name" value=":phonegap-facebook-plugin:starter-FacebookLib" />
                 <option name="path" value="$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib" />
               </ExternalProjectPojo>
             </list>
@@ -503,14 +506,14 @@
                 <option name="name" value="prepareAndroidCordovaLibUnspecifiedReleaseLibrary" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare android.phonegap-facebook-plugin:FacebookLib:unspecified:debug" />
+                <option name="description" value="Prepare android.phonegap-facebook-plugin:starter-FacebookLib:unspecified:debug" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareAndroidPhonegapFacebookPluginFacebookLibUnspecifiedDebugLibrary" />
+                <option name="name" value="prepareAndroidPhonegapFacebookPluginStarterFacebookLibUnspecifiedDebugLibrary" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare android.phonegap-facebook-plugin:FacebookLib:unspecified:release" />
+                <option name="description" value="Prepare android.phonegap-facebook-plugin:starter-FacebookLib:unspecified:release" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareAndroidPhonegapFacebookPluginFacebookLibUnspecifiedReleaseLibrary" />
+                <option name="name" value="prepareAndroidPhonegapFacebookPluginStarterFacebookLibUnspecifiedReleaseLibrary" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1430,7 +1433,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="7220297446000" />
+        <entry key="$PROJECT_DIR$" value="7220340316000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1888,7 +1891,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -1907,6 +1910,80 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Problems">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Production">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1956,10 +2033,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1991,80 +2064,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Problems">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Production">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2344,7 +2343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2384,7 +2382,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2424,7 +2421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2464,7 +2460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2504,7 +2499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2536,7 +2530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2582,7 +2575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2686,7 +2678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5981735" vertical-offset="484" max-vertical-offset="705">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

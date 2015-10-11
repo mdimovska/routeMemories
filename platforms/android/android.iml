@@ -81,7 +81,7 @@
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CordovaLib" exported="" />
-    <orderEntry type="module" module-name="FacebookLib" exported="" />
+    <orderEntry type="module" module-name="starter-FacebookLib" exported="" />
   </component>
 </module>
 

@@ -1,27 +1,35 @@
 angular.module('starter')
-        .controller('LoadingCtrl',
-                function (
-                        $scope,
-                        $rootScope,
-                        $state,
-                        $ionicSideMenuDelegate,
-                        $ionicModal,
-                        $timeout,
-                        $cordovaFacebook
-                        ) {
+    .controller('LoadingCtrl',
+    function ($scope,
+              $rootScope,
+              $state,
+              authenticationFactory) {
 
-                    if ($rootScope.isLoggedIn === undefined) {
-                        $rootScope.isLoggedIn = false;
-                    }
 
-                    // Perform the login action when the user submits the login form
-                    if (!$rootScope.isLoggedIn) {
-                        console.log("User not logged in. Redirecting to login page.");
-                        $state.go('login');
-                    } else {
+        var initialTiming = 0;
+        if(!window.cordova){
+            initialTiming = 1000;
+        }
+
+        setTimeout(function(){
+            authenticationFactory.isUserLoggedIn().then(
+                function (success) {
+                    if (success.status === 'connected') {
+                        $rootScope.isLoggedIn = true;
+                        $rootScope.userId = localStorage.getItem('userId');
+                        $rootScope.userName = localStorage.getItem('username');
                         console.log("User logged in. Redirecting to home page.");
                         $state.go('app.home');
+                    } else {
+                        $state.go('login');
                     }
 
-                });
+                }, function (error) {
+                    console.log('Error with authentication ' + JSON.stringify(error));
+                }
+            );
+        },initialTiming);
+
+
+    });
 

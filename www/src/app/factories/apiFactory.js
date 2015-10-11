@@ -37,7 +37,7 @@ angular.module('starter')
                 method: 'POST',
                 url: registerUrl,
                 data: postData,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                headers: {'Content-Type': 'application/json'}
             })
                 .then(function () {
                     // success
@@ -72,20 +72,20 @@ angular.module('starter')
             var def = $q.defer();
             var url = apiFactory.getAddRouteUrl();
 
-            var postData = $.param({
+            var postData = {
                 'userId': userId,
                 'latLngList': route.positionListString,
                 'startDate': route.startDate,
                 'endDate': route.endDate,
                 'routeName': route.routeName,
                 'imgList': route.imgList
-            });
+            };
 
             $http({
                 method: 'POST',
                 url: url,
                 data: postData,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                headers: {'Content-Type': 'application/json'}
             })
                 .then(function () {
                     // success
