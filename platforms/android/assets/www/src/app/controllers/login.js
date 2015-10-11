@@ -45,19 +45,8 @@ angular.module('starter')
                     $scope.loginOrLogout = function () {
                         console.log('Doing login');
 
-//                        // new
-//                        if (!window.cordova) {
-//                            var appID = 907283522693609;
-//                            facebookConnectPlugin.browserInit(appID);
-//                        }
-
-
-                        $cordovaFacebook.login(["public_profile", "email", "user_friends"])
+                        $cordovaFacebook.login(["public_profile", "email"])
                                 .then(function (success) {
-                                    // { id: "634565435",
-                                    //   lastName: "bob"
-                                    //   ...
-                                    // }
                                     console.log(JSON.stringify(success));
                                     $rootScope.isLoggedIn = true;
 

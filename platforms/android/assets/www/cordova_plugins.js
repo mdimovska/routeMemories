@@ -32,6 +32,13 @@ module.exports = [
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "id": "cordova-plugin-whitelist.whitelist",
         "runs": true
+    },
+    {
+        "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
+        "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
+        "clobbers": [
+            "facebookConnectPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -39,7 +46,8 @@ module.exports.metadata =
 {
     "org.apache.cordova.geolocation": "0.3.12",
     "cordova-plugin-camera": "1.2.0",
-    "cordova-plugin-whitelist": "1.1.0"
+    "cordova-plugin-whitelist": "1.1.0",
+    "phonegap-facebook-plugin": "0.12.0"
 }
 // BOTTOM OF METADATA
 });

@@ -8,8 +8,99 @@ angular.module('starter',
         [
             'ionic',
             'ngCordova',
-            'uiGmapgoogle-maps'
+            'uiGmapgoogle-maps',
+            'RequestInterceptor',
         ])
+        .config(function ($stateProvider,
+                $urlRouterProvider,
+                uiGmapGoogleMapApiProvider,
+//                $cordovaFacebookProvider,
+//                $cordovaFacebook,
+                $compileProvider) {
+
+            $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
+
+            var appID = 907283522693609;
+            var version = "v2.4";
+
+            // Only required for development in browser, not cordova...
+//            $cordovaFacebookProvider.browserInit(appID, version);
+//            if (window.cordova.platformId === "browser") {
+//                facebookConnectPlugin.browserInit(appId, version);
+//                // version is optional. It refers to the version of API you may want to use.
+//            }
+
+            if (!window.cordova) {
+//                var appId = prompt("Enter FB Application ID", "");
+//               facebookConnectPlugin.browserInit(appID, version);
+            }
+            $stateProvider
+
+                    .state('app', {
+                        url: '/app',
+                        abstract: true,
+                        templateUrl: 'src/app/views/menu.html',
+                        controller: 'MenuCtrl'
+                    })
+
+                    .state('app.routeList', {
+                        url: '/routeList',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'src/app/views/routeList.html',
+                                controller: 'RouteListCtrl'
+                            }
+                        }
+                    })
+
+                    .state('app.home', {
+                        url: '/home',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'src/app/views/home.html',
+                                controller: 'HomeCtrl'
+                            }
+                        }
+                    })
+
+                    .state('app.route', {
+                        url: '/routeList/:routeId',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'src/app/views/route.html',
+                                controller: 'RouteCtrl'
+                            }
+                        }
+                    })
+
+                    .state('loading', {
+                        url: '/loading',
+                        templateUrl: 'src/app/views/loading.html',
+                        controller: 'LoadingCtrl'
+//                        views: {
+//                            'menuContent': {
+//                            }
+//                        }
+                    })
+                    .state('login', {
+                        url: '/login',
+                        templateUrl: 'src/app/views/login.html',
+                        controller: 'LoginCtrl'
+//                        views: {
+//                            'menuContent': {
+//                            }
+//                        }
+                    })
+            // if none of the above states are matched, use this as the fallback
+            $urlRouterProvider.otherwise('loading');
+
+            uiGmapGoogleMapApiProvider.configure({
+                key: 'AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0 ',
+                v: '3.20',
+                language: 'en',
+                sensor: 'false',
+            })
+        })
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -25,65 +116,21 @@ angular.module('starter',
                     StatusBar.styleDefault();
                 }
             });
-        })
-
-        .config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $compileProvider) {
-
-            $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-
-            $stateProvider
-
-                    .state('app', {
-                        url: '/app',
-                        abstract: true,
-                        templateUrl: 'src/app/views/menu.html',
-                        controller: 'MenuCtrl'
-                    })
-
-                    .state('app.search', {
-                        url: '/search',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'src/app/views/search.html'
-                            }
-                        }
-                    })
-
-                    .state('app.home', {
-                        url: '/home',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'src/app/views/home.html',
-                                controller: 'HomeCtrl'
-                            }
-                        }
-                    })
-                    .state('app.playlists', {
-                        url: '/playlists',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'src/app/views/playlists.html',
-                                controller: 'PlaylistsCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.single', {
-                        url: '/playlists/:playlistId',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'src/app/views/playlist.html',
-                                controller: 'PlaylistCtrl'
-                            }
-                        }
-                    });
-            // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('app/home');
-
-            uiGmapGoogleMapApiProvider.configure({
-                key: 'AIzaSyBFOprPOwvx5eWps01IUF3rQvafdsp4iu0 ',
-                v: '3.20',
-                language: 'en',
-                sensor: 'false',
-            })
         });
+
+// request interceptor
+angular.module('RequestInterceptor', [])
+        .config(function ($httpProvider) {
+            $httpProvider.interceptors.push('requestInterceptor');
+        }).factory('requestInterceptor', [
+    function () {
+        return {
+            'request': function (config) {
+                if (config.url.indexOf('http') > -1) {
+                    config.cache = false;
+                }
+                return config;
+            }
+
+        };
+    }]);

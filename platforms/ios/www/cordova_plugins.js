@@ -55,13 +55,21 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
+        "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
+        "clobbers": [
+            "facebookConnectPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "org.apache.cordova.geolocation": "0.3.12",
-    "cordova-plugin-camera": "1.2.0"
+    "cordova-plugin-camera": "1.2.0",
+    "phonegap-facebook-plugin": "0.12.0"
 }
 // BOTTOM OF METADATA
 });

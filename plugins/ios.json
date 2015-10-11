@@ -42,6 +42,30 @@
                             "xml": false,
                             "count": 1
                         }
+                    ],
+                    "libsqlite3.dylib": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "Social.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
+                    ],
+                    "Accounts.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
+                    ],
+                    "Security.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -59,6 +83,34 @@
                         {
                             "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"ios-package\" value=\"FacebookConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<plugin name=\"FacebookConnectPlugin\" value=\"FacebookConnectPlugin\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://m.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://graph.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://api.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://*.fbcdn.net\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://*.akamaihd.net\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -70,6 +122,24 @@
                             "xml": "<string />",
                             "count": 2
                         }
+                    ],
+                    "FacebookAppID": [
+                        {
+                            "xml": "<string>907283522693609</string>",
+                            "count": 1
+                        }
+                    ],
+                    "FacebookDisplayName": [
+                        {
+                            "xml": "<string>RouteMemories</string>",
+                            "count": 1
+                        }
+                    ],
+                    "CFBundleURLTypes": [
+                        {
+                            "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb907283522693609</string></array></dict></array>",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -80,6 +150,11 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "907283522693609",
+            "APP_NAME": "RouteMemories",
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },

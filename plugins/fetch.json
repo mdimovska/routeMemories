@@ -22,5 +22,16 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "phonegap-facebook-plugin": {
+        "source": {
+            "type": "local",
+            "path": "/Users/gkopevski/Downloads/phonegap-facebook-plugin-master"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "907283522693609",
+            "APP_NAME": "RouteMemories"
+        }
     }
 }

@@ -1,32 +1,46 @@
 angular.module('starter')
         .controller('HomeCtrl',
-                function (
-                        $scope,
+                function ($scope,
                         $rootScope,
-                        $state,
                         $ionicModal,
                         $cordovaGeolocation,
                         $cordovaCamera,
-                        uiGmapGoogleMapApi
-                        ) {
+                        uiGmapGoogleMapApi,
+                        $interval,
+                        mapFactory,
+                        apiFactory) {
+
+                    var timer;
+
+                    $scope.clearCurrentRouteData = function () {
+                        console.log("Clearing current route data...");
+
+                        $rootScope.routeObject = {};
+                        $rootScope.positionList = new Array();
+                        $rootScope.latLngList = new Array();
+                        $rootScope.routeObject.markers = new Array();
+                        $rootScope.routeObject.imgList = new Array();
+
+                        $rootScope.routeObject.startDate = '';
+                        $rootScope.routeObject.endDate = '';
+                        $rootScope.routeObject.routeName = '';
+                        $rootScope.routeObject.positionListString = '';
+
+                        $rootScope.startPosition = {};
+                    }
+
                     if ($rootScope.started === undefined) {
                         $rootScope.started = false;
                     }
-
-                    $rootScope.positionList = new Array();
-                    $rootScope.latLngList = new Array();
-                    $rootScope.markers = new Array();
-
-                    $scope.watchOptions = {
-                        timeout: 10000,
-                        enableHighAccuracy: true, // may cause errors if true
-                        maximumAge: 600000
-                    };
+                    $scope.clearCurrentRouteData(); //initialize route data
 
                     $scope.appendPositionToLists = function (lat, lng) {
                         var location = {
                             latitude: lat,
                             longitude: lng,
+                            toString: function () {
+                                return this.latitude + "," + this.longitude;
+                            }
                         };
                         console.log('lat: ' + lat + ', lng: ' + lng);
                         $rootScope.positionList.push(location);
@@ -39,30 +53,84 @@ angular.module('starter')
                         });
                     }
 
-                    $scope.watchPositionChanges = function () {
-                        $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
-                        $scope.watch.then(
-                                null,
-                                function (err) {
-                                    // error
-                                    console.log('An error occured while setting watch: ' + JSON.stringify(err));
-                                },
-                                function (position) {
-                                    var lat = position.coords.latitude;
-                                    var lng = position.coords.longitude;
-                                    $scope.appendPositionToLists(lat, lng);
-                                });
-                    }
+                    function calculateDistanceAndAppendOrRejectPosition(latitude, longitude) {
+                        uiGmapGoogleMapApi.then(function (maps) {
+                            // calculate distance from the last position
+                            // if distance < 15m, do not append the position to the list
+                            var location1 = new maps.LatLng(
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
+                                    $rootScope.positionList[$rootScope.positionList.length - 1].longitude
+                                    );
+                            var location2 = new maps.LatLng(
+                                    latitude,
+                                    longitude);
 
-                    $scope.startOrStop = function () {
-                        if (!$rootScope.started) {
-                            // start watching location changes
-                            var posOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
+                            directionsService = new maps.DirectionsService();
+                            directionsDisplay = new maps.DirectionsRenderer({
+                                suppressMarkers: true,
+                                suppressInfoWindows: true
+                            });
+                            var request = {
+                                origin: location1,
+                                destination: location2,
+                                travelMode: google.maps.DirectionsTravelMode.WALKING
+                            };
+                            directionsService.route(request, function (response, status) {
+                                if (status == google.maps.DirectionsStatus.OK)
+                                {
+                                    var distance = parseFloat(response.routes[0].legs[0].distance.value);
+                                    console.log('distance: ' + distance);
+                                    if (distance < 30) {
+                                        // append position to list
+                                        console.log("appending position to list");
+                                        $scope.appendPositionToLists(latitude, longitude);
+                                    }
+                                } else {
+                                    console.log('getting distance status: ' + status);
+                                    console.log('getting distance response: ' + JSON.stringify(response));
+                                }
+                            });
+                        });
+                    }
+                    ;
+
+                    $scope.watchPositionChanges = function () {
+                        console.log("Started watching postion changes...");
+
+                        // Don't start a new timer if one is already running
+                        if (angular.isDefined(timer)) {
+                            return;
+                        }
+
+                        timer = $interval(function () {
+                            console.log("Time: " + new Date());
                             $cordovaGeolocation
-                                    .getCurrentPosition(posOptions)
+                                    .getCurrentPosition($scope.positionOptions)
                                     .then(function (position) {
                                         var lat = position.coords.latitude;
                                         var lng = position.coords.longitude;
+                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
+                                    }, function (err) {
+                                        // error
+                                        alert('Can not get position');
+                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
+                                    });
+                        }, 20000);
+                    }
+
+                    $scope.positionOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
+
+                    $scope.startOrStop = function () {
+                        if (!$rootScope.started) {
+                            $cordovaGeolocation
+                                    .getCurrentPosition($scope.positionOptions)
+                                    .then(function (position) {
+                                        var lat = position.coords.latitude;
+                                        var lng = position.coords.longitude;
+                                        $rootScope.startPosition = {
+                                            "lat": lat,
+                                            "lng": lng,
+                                        }
 
                                         var marker = {
                                             "title": 'My location',
@@ -70,11 +138,13 @@ angular.module('starter')
                                             "lng": lng,
                                             "description": "Start position"
                                         }
-                                        $scope.markers.push(marker);
+                                        $rootScope.routeObject.markers.push(marker);
 
                                         $rootScope.started = true;
+                                        $rootScope.routeObject.startDate = new Date();
                                         $scope.appendPositionToLists(lat, lng);
 
+                                        // start watching location changes
                                         $scope.watchPositionChanges();
                                     }, function (err) {
                                         // error
@@ -83,29 +153,71 @@ angular.module('starter')
                                     });
                         } else {
                             $rootScope.started = false;
+                            $rootScope.routeObject.endDate = new Date();
 
                             // clear watch
-                            $scope.watch.clearWatch();
-                            // OR
-//                                $cordovaGeolocation.clearWatch($scope.watch)
-//                                        .then(function (result) {
-//                                            // success
-//                                            console.log('watch cleared');
-//                                        }, function (error) {
-//                                            // error
-//                                            console.log('An error occured while clearing watch: ' + JSON.stringify(error));
-//                                        });
+                            $scope.stopWatchingPositionChanges();
 
-                            // TODO save route to server
-                            // at the end, clear route data
-                            $rootScope.positionList = new Array();
-                            $rootScope.latLngList = new Array();
-                            $rootScope.markers = new Array();
-
+                            $scope.showEndRouteModal();
                         }
 
                     }
 
+                    $rootScope.stopWatchingPositionChanges = function () {
+                        console.log("Stopped watching postion changes...");
+                        if (angular.isDefined(timer)) {
+                            $interval.cancel(timer);
+                            timer = undefined;
+                        }
+                    }
+
+                    $scope.$on('$destroy', function () {
+                        console.log("ondestroy called");
+                        // Make sure that the interval is destroyed too
+                        $rootScope.stopWatchingPositionChanges();
+                    });
+
+                    $scope.saveAndEndRoute = function () {
+                        console.log("Saving current route...");
+
+                        // join array of positions into one string
+                        $rootScope.routeObject.positionListString = $rootScope.positionList.join(";");
+                        // TODO check if should get and append end position?
+
+                        // save route to server
+                        apiFactory.addRoute($rootScope.routeObject, $rootScope.userId)
+                                .then(function (success) {
+                                    // if successfully saved, proceed with the following lines:
+
+                                    // at the end, clear route data
+                                    $rootScope.started = false;
+                                    $scope.clearCurrentRouteData();
+
+                                    // close dialog
+                                    $scope.closeEndRouteModal();
+
+                                }, function (error) {
+                                    console.log('Route saving failed. Error: ' + JSON.stringify(error));
+                                });
+                    }
+
+                    $scope.deleteCurrentRoute = function () {
+                        console.log("Deleting current route...");
+                        // clear route data
+                        $rootScope.started = false;
+                        $scope.clearCurrentRouteData();
+                        // close dialog
+                        $scope.closeEndRouteModal();
+                    }
+
+                    $scope.continueCurrentRoute = function () {
+                        console.log("Continuing current route...");
+                        $rootScope.started = true;
+                        // continue watching location changes
+                        $scope.watchPositionChanges();
+                        // close dialog
+                        $scope.closeEndRouteModal();
+                    }
 
                     // Create the map modal that we will use later
                     $ionicModal.fromTemplateUrl('src/app/views/map.html', {
@@ -125,6 +237,24 @@ angular.module('starter')
                     };
 
 
+                    // Create the end route modal that we will use later
+                    $ionicModal.fromTemplateUrl('src/app/views/endRouteModal.html', {
+                        scope: $scope
+                    }).then(function (modal) {
+                        $scope.endRouteModal = modal;
+                    });
+
+                    // Triggered in the end route modal to close it
+                    $scope.closeEndRouteModal = function () {
+                        $scope.endRouteModal.hide();
+                    };
+
+                    // Open the end route modal
+                    $scope.showEndRouteModal = function () {
+                        $scope.endRouteModal.show();
+                    };
+
+
                     $scope.showCurrentRoute = function () {
                         $scope.showMapModal();
 
@@ -135,95 +265,29 @@ angular.module('starter')
                         });
                     }
 
-
                     var showMap = function (maps) {
                         // TODO change default center
-                        var mapCenter = new maps.LatLng(2, 1);
+                        // the center is the last position
+                        var mapCenter = new maps.LatLng(42.000, 21.4333);
                         if ($rootScope.positionList !== undefined && $rootScope.positionList.length > 0) {
                             mapCenter = new maps.LatLng(
                                     $rootScope.positionList[$rootScope.positionList.length - 1].latitude,
                                     $rootScope.positionList[$rootScope.positionList.length - 1].longitude
                                     );
                         }
-                        var mapOptions = {
-                            center: mapCenter,
-                            zoom: 17,
-                            mapTypeId: maps.MapTypeId.ROADMAP
-                        };
-                        var map = new maps.Map(document.getElementById('map'), mapOptions);
+                        var mapElement = document.getElementById('map');
 
-                        var infoWindow = new maps.InfoWindow();
-                        var latLngBounds = new maps.LatLngBounds();
-                        for (i = 0; i < $rootScope.markers.length; i++) {
-                            var data = $rootScope.markers[i];
-                            var myLatlng = new maps.LatLng(data.lat, data.lng);
-                            var marker = new maps.Marker({
-                                position: myLatlng,
-                                map: map,
-                                title: data.title
-                            });
-                            latLngBounds.extend(marker.position);
-                            (function (marker, data) {
-                                maps.event.addListener(marker, "click", function (e) {
-                                    infoWindow.setContent(data.description);
-                                    infoWindow.open(map, marker);
-                                });
-                            })(marker, data);
-                        }
-//                        map.setCenter(latLngBounds.getCenter());
-//                        map.fitBounds(latLngBounds);
-
-                        //***********ROUTING****************//
-
-                        //Initialize the Path Array
-                        var path = new maps.MVCArray();
-
-                        //Initialize the Direction Service
-                        var service = new maps.DirectionsService();
-
-                        //Set the Path Stroke Color
-                        var poly = new maps.Polyline({map: map, strokeColor: '#4986E7'});
-
-                        //Loop and Draw Path Route between the Points on MAP
-                        for (var i = 0; i < $rootScope.latLngList.length; i++) {
-                            if ((i + 1) < $rootScope.latLngList.length) {
-                                var src = $rootScope.latLngList[i];
-                                var des = $rootScope.latLngList[i + 1];
-                                path.push(src);
-                                poly.setPath(path);
-                                service.route({
-                                    origin: src,
-                                    destination: des,
-                                    travelMode: maps.DirectionsTravelMode.DRIVING
-                                }, function (result, status) {
-                                    if (status == maps.DirectionsStatus.OK) {
-                                        for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                                            path.push(result.routes[0].overview_path[i]);
-                                        }
-                                    }
-                                });
-                            }
-                        }
+                        mapFactory.showMap(
+                                maps, mapCenter, mapElement,
+                                $rootScope.routeObject.markers,
+                                $rootScope.routeObject.imgList,
+                                $rootScope.latLngList,
+                                false);
 
                     }
 
 
                     $scope.takePicture = function () {
-
-//                        var options = {
-//                            destinationType: Camera.DestinationType.FILE_URI,
-//                            sourceType: Camera.PictureSourceType.CAMERA,
-//                        };
-
-//                            $cordovaCamera.getPicture(options).then(function (imageURI) {
-////                                var image = document.getElementById('myImage');
-////                                image.src = imageURI;
-//                                $scope.imgURI = imageURI;
-//                            }, function (err) {
-//                                // error
-//                                 alert("Can not take photo: " + JSON.stringify(err));
-////                                console.log("Can not take photo: " + JSON.stringify(err));
-//                            });
                         var options = {
                             quality: 50,
                             destinationType: Camera.DestinationType.DATA_URL,
@@ -238,19 +302,37 @@ angular.module('starter')
                         };
 
                         $cordovaCamera.getPicture(options).then(function (imageData) {
-//                                var image = document.getElementById('myImage');
-//                                image.src = "data:image/jpeg;base64," + imageData;
-                            $scope.imgURI = "data:image/jpeg;base64," + imageData;
-
+                            $scope.appendMarkerToList(imageData);
                         }, function (err) {
-                            // error
                             alert("Can not take photo: " + JSON.stringify(err));
                             console.log("Can not take photo: " + JSON.stringify(err));
                         });
 
                     }
 
+                    $scope.pushImageToList = function (lat, lng, imageData, dateTaken) {
+                        var image = {
+                            "title": 'Image',
+                            "dateTaken": dateTaken,
+                            "lat": lat,
+                            "lng": lng,
+                            "imageData": imageData
+                        }
+                        $rootScope.routeObject.imgList.push(image);
+                    }
 
+                    $scope.appendMarkerToList = function (imageData) {
+                        $cordovaGeolocation
+                                .getCurrentPosition($scope.positionOptions)
+                                .then(function (position) {
+                                    $scope.pushImageToList(position.coords.latitude, position.coords.longitude, imageData, new Date());
+                                }, function (err) {
+                                    // error
+                                    alert('Can not get current position');
+                                    console.log('An error occured while getting possition. Pushing image to list with start location. Error: ' + JSON.stringify(err));
+                                    $scope.pushImageToList($scope.currentPosition.lat, $scope.currentPosition.lng, imageData, new Date());
+                                });
+                    }
 
                 });
 
