@@ -7,9 +7,9 @@ angular.module('starter')
 
 
         var initialTiming = 0;
-        if(!window.cordova){
-            initialTiming = 1000;
-        }
+        //if(!window.cordova){
+            initialTiming = 3000;
+        //}
 
         setTimeout(function(){
             authenticationFactory.isUserLoggedIn().then(

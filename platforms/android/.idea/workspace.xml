@@ -17,51 +17,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fe35f6a-4133-4bef-aa4a-acbefb5eb890" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib/FacebookLib.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.xcworkspace/xcuserdata/gkopevski.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.xcworkspace/xcuserdata/gkopevski.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova/HelloCordova-Info.plist" afterPath="$PROJECT_DIR$/../ios/HelloCordova/HelloCordova-Info.plist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/assets/www/src/app/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../../www/src/app/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/app.js" afterPath="$PROJECT_DIR$/assets/www/src/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/app.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/app.js" afterPath="$PROJECT_DIR$/../../www/src/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova/config.xml" afterPath="$PROJECT_DIR$/../ios/HelloCordova/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/facebookconnect.xml" afterPath="$PROJECT_DIR$/res/values/facebookconnect.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/index.html" afterPath="$PROJECT_DIR$/../ios/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/facebook-connect-plugin/index.js" afterPath="$PROJECT_DIR$/assets/www/lib/facebook-connect-plugin/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/lib/facebook-connect-plugin/index.js" afterPath="$PROJECT_DIR$/../ios/www/lib/facebook-connect-plugin/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/lib/facebook-connect-plugin/index.js" afterPath="$PROJECT_DIR$/../../www/lib/facebook-connect-plugin/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/loading.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/loading.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/loading.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/loading.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/loading.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/loading.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/login.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/login.html" afterPath="$PROJECT_DIR$/../ios/www/src/app/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/views/login.html" afterPath="$PROJECT_DIR$/../../www/src/app/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/assets/www/src/app/views/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/../ios/www/src/app/views/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/views/menu.html" afterPath="$PROJECT_DIR$/../../www/src/app/views/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/assets/www/src/app/controllers/menu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/../ios/www/src/app/controllers/menu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/src/app/controllers/menu.js" afterPath="$PROJECT_DIR$/../../www/src/app/controllers/menu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../www/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../ios/HelloCordova.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../www/.idea/workspace.xml" />
     </list>
@@ -1433,7 +1401,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="7220340316000" />
+        <entry key="$PROJECT_DIR$" value="7220343808000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2271,7 +2239,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1616" height="876" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />

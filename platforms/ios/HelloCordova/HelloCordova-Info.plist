@@ -86,30 +86,6 @@
           <string>fb907283522693609</string>
         </array>
       </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>fb907283522693609</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>fb907283522693609</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>fb907283522693609</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>fb907283522693609</string>
-        </array>
-      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>0.0.1</string>
@@ -227,6 +203,10 @@
         <key>UILaunchImageSize</key>
         <string>{768, 1024}</string>
       </dict>
+    </array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbauth</string>
     </array>
   </dict>
 </plist>
