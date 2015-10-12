@@ -45,14 +45,14 @@ angular.module('starter')
                             def.resolve('UserInfoRetrieved');
                         }, function (error) {
                             console.log("An error occured while getting user info: " + JSON.stringify(error));
-                            console.log("Logging out...");
-                            alert("An error occured while logging in");
-                            def.resolve('UserInfoNOTRetrieved');
+                            alert("An error occurred while logging in");
+                            def.reject('UserInfoNOTRetrieved');
                         });
 
                 }, function (error) {
                     console.log("An error occured while logging in: " + JSON.stringify(error));
                     alert("An error occured while logging in");
+                    def.reject('userNotAbleToLogIn');
                 });
             return def.promise;
         };

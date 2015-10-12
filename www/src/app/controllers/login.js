@@ -37,7 +37,7 @@ angular.module('starter')
         $scope.loginOrLogout = function () {
             authenticationFactory.loginUser().then(
                 function (success) {
-                    $scope.register($rootScope.userId, $rootScope.userName, "//graph.facebook.com/" + $rootScope.userId + "/picture?width=80&height=80");
+                    $scope.register($rootScope.userId, $rootScope.userName, "https://graph.facebook.com/" + $rootScope.userId + "/picture?width=80&height=80");
                 }, function (error) {
                     alert('There was problem with logging in, please try again later: ' + JSON.stringify(error));
                 }

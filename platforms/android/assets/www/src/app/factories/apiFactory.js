@@ -58,7 +58,7 @@ angular.module('starter')
             console.log(route.startDate);
             console.log(route.endDate);
             console.log(route.routeName);
-            console.log(route.imgList);
+            console.log(JSON.stringify(route.imgList));
 
             // TODO delete
 //                var image = {

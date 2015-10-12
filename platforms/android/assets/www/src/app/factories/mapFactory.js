@@ -77,7 +77,7 @@ angular.module('starter')
 //                        });
                         
                          (function (imgMarker, data) {
-                            maps.event.addListener(marker, "mousedown", function (e) {
+                            maps.event.addListener(imgMarker, "mousedown", function (e) {
                                 infoWindow.setContent(content);
                                 infoWindow.open(map, imgMarker);
                             });

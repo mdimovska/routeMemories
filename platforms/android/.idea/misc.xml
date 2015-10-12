@@ -13,8 +13,13 @@
       </map>
     </option>
   </component>
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\java\ncamaven\maven-3.3.1" />
+        <option name="userSettingsFile" value="C:\java\ncamaven\maven-3.3.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -33,4 +38,3 @@
     <option name="id" value="Android" />
   </component>
 </project>
-

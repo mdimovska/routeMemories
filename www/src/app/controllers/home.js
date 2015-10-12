@@ -73,14 +73,15 @@ angular.module('starter')
                             var request = {
                                 origin: location1,
                                 destination: location2,
-                                travelMode: google.maps.DirectionsTravelMode.WALKING
+                                travelMode: maps.DirectionsTravelMode.WALKING
                             };
                             directionsService.route(request, function (response, status) {
-                                if (status == google.maps.DirectionsStatus.OK)
+                                if (status == maps.DirectionsStatus.OK)
                                 {
                                     var distance = parseFloat(response.routes[0].legs[0].distance.value);
                                     console.log('distance: ' + distance);
-                                    if (distance < 30) {
+//                                    if (distance < 30) {
+                                    if (distance > 0) {
                                         // append position to list
                                         console.log("appending position to list");
                                         $scope.appendPositionToLists(latitude, longitude);
@@ -312,7 +313,6 @@ angular.module('starter')
 
                     $scope.pushImageToList = function (lat, lng, imageData, dateTaken) {
                         var image = {
-                            "title": 'Image',
                             "dateTaken": dateTaken,
                             "lat": lat,
                             "lng": lng,
