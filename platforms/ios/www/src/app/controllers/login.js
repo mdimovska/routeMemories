@@ -3,13 +3,14 @@ angular.module('starter')
     function ($scope,
               $rootScope,
               $state,
-              $ionicSideMenuDelegate,
-              $ionicModal,
-              $timeout,
-              $cordovaFacebook,
               apiFactory,
-              authenticationFactory
-            ) {
+              authenticationFactory,
+              $ionicPlatform) {
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+//                        event.preventDefault();
+            navigator.app.exitApp();
+        }, 100);
 
         $scope.register = function (id, firstName, lastName, pictureUrl) {
             apiFactory.register(id, firstName, lastName, pictureUrl)
@@ -37,45 +38,46 @@ angular.module('starter')
         $scope.loginOrLogout = function () {
             authenticationFactory.loginUser().then(
                 function (success) {
-                    $scope.register($rootScope.userId, $rootScope.userName, "//graph.facebook.com/" + $rootScope.userId + "/picture?width=80&height=80");
+                    console.log('response');
+                    $scope.register($rootScope.userId, $rootScope.userName, "https://graph.facebook.com/" + $rootScope.userId + "/picture?width=80&height=80");
                 }, function (error) {
-
+                    alert('There was problem with logging in, please try again later: ' + JSON.stringify(error));
                 }
             );
         };
 
 
-        function checkIfLoggedIn(){
-            authenticationFactory.isUserLoggedIn().then(
-                function (success) {
-                    if (success.status === 'connected') {
-                        $rootScope.isLoggedIn = true;
-                        $cordovaFacebook.api("me", ["public_profile"])
-                            .then(function (success) {
-                                console.log("Successfully retrieved user info: " + JSON.stringify(success));
-                                $rootScope.userName = success.name;
-                                $rootScope.userId = success.id;
-                                localStorage.setItem('userId',$rootScope.userId);
-                                localStorage.setItem('username',$rootScope.userName);
-                                $state.go('app.home');
-                            }, function (error) {
-                                console.log("An error occured while getting user info: " + JSON.stringify(error));
-                                console.log("Logging out...");
-                                alert("An error occured while logging in");
-                            });
-                    }else{
-                        setTimeout(function(){
-                            checkIfLoggedIn();
-                        },3000);
-                    }
-                }, function (error) {
-                    console.log('Error with authentication ' + JSON.stringify(error));
-                }
-            );
-        }
-
-        if(ionic.Platform.isIOS()) {
-            checkIfLoggedIn();
-        }
+        //function checkIfLoggedIn(){
+        //    authenticationFactory.isUserLoggedIn().then(
+        //        function (success) {
+        //            if (success.status === 'connected') {
+        //                $rootScope.isLoggedIn = true;
+        //                $cordovaFacebook.api("me", ["public_profile"])
+        //                    .then(function (success) {
+        //                        console.log("Successfully retrieved user info: " + JSON.stringify(success));
+        //                        $rootScope.userName = success.name;
+        //                        $rootScope.userId = success.id;
+        //                        localStorage.setItem('userId',$rootScope.userId);
+        //                        localStorage.setItem('username',$rootScope.userName);
+        //                        $state.go('app.home');
+        //                    }, function (error) {
+        //                        console.log("An error occured while getting user info: " + JSON.stringify(error));
+        //                        console.log("Logging out...");
+        //                        alert("An error occured while logging in");
+        //                    });
+        //            }else{
+        //                setTimeout(function(){
+        //                    checkIfLoggedIn();
+        //                },3000);
+        //            }
+        //        }, function (error) {
+        //            console.log('Error with authentication ' + JSON.stringify(error));
+        //        }
+        //    );
+        //}
+        //
+        //if(ionic.Platform.isIOS()) {
+        //    checkIfLoggedIn();
+        //}
     });
 

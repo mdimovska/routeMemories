@@ -1,24 +1,32 @@
 angular.module('starter')
         .controller('RouteCtrl',
                 function ($scope,
-                        $rootScope,
-                        $state,
-                        $ionicModal,
-                        $cordovaGeolocation,
                         mapFactory,
                         $stateParams,
                         uiGmapGoogleMapApi,
+                        apiFactory,
                         routeDetailsFactory) {
 
                     var route = routeDetailsFactory.getTempRouteDetails();
                     $scope.route = route;
+                    $scope.route.imgList = [];
                     $scope.routeId = $stateParams.routeId;
 
-                    // uiGmapGoogleMapApi is a promise.
-                    // The "then" callback function provides the google.maps object.
-                    uiGmapGoogleMapApi.then(function (maps) {
-                        showMap(maps);
-                    });
+                    // get photos by route
+                    apiFactory.getPhotosByRoute($scope.route._id)
+                            .then(function (success) {
+                                $scope.route.imgList = success;
+                                // uiGmapGoogleMapApi is a promise.
+                                // The "then" callback function provides the google.maps object.
+                                uiGmapGoogleMapApi.then(function (maps) {
+                                    showMap(maps);
+                                });
+                            }, function (error) {
+                                console.log('Photo list retrieval failed. Error: ' + JSON.stringify(error));
+                                uiGmapGoogleMapApi.then(function (maps) {
+                                    showMap(maps);
+                                });
+                            });
 
                     var showMap = function (maps) {
                         // TODO change default center
@@ -60,7 +68,7 @@ angular.module('starter')
                         mapFactory.showMap(
                                 maps, mapCenter, mapElement,
                                 markerList,
-                                $rootScope.imgList,
+                                $scope.route.imgList,
                                 latLngList,
                                 true);
                     }

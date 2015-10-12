@@ -4,7 +4,7 @@ angular.module('starter')
         var apiFactory = {};
 
         apiFactory.getBaseUrl = function () {
-            //return "http://localhost:5000/"; //TODO change when everything is up and running on heroku
+//            return "http://localhost:5000/";
             return "https://shrouded-fjord-6158.herokuapp.com/";
         }
         apiFactory.getRegisterUrl = function () {
@@ -12,7 +12,9 @@ angular.module('starter')
         }
         apiFactory.getRoutesByUserUrl = function (userId) {
             return apiFactory.getBaseUrl() + "routes/getRoutesByUser?userId=" + userId;
-//                return apiFactory.getBaseUrl() + "routes";
+        }
+        apiFactory.getPhotosByRouteUrl = function (routeId) {
+            return apiFactory.getBaseUrl() + "images/getImagesByRoute?routeId=" + routeId;
         }
         apiFactory.getAddRouteUrl = function () {
             return apiFactory.getBaseUrl() + "routes";
@@ -58,7 +60,7 @@ angular.module('starter')
             console.log(route.startDate);
             console.log(route.endDate);
             console.log(route.routeName);
-            console.log(route.imgList);
+            console.log(JSON.stringify(route.imgList));
 
             // TODO delete
 //                var image = {
@@ -107,6 +109,19 @@ angular.module('starter')
                 })
                 .error(function () {
                     def.reject("Failed to get route list by user");
+                });
+            return def.promise;
+        }
+        
+        apiFactory.getPhotosByRoute = function (routeId) {
+            var url = apiFactory.getPhotosByRouteUrl(routeId);
+            var def = $q.defer();
+            $http.get(url)
+                .success(function (data) {
+                    def.resolve(data);
+                })
+                .error(function () {
+                    def.reject("Failed to get photo list by route");
                 });
             return def.promise;
         }

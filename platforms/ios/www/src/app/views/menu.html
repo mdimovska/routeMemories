@@ -20,7 +20,7 @@
             <ion-list>
                 <ion-item ng-show="isLoggedIn" class="person-info item-balanced">
                     <div class="person-image-wrapper">
-                        <img class="person-image" src="//graph.facebook.com/{{userId}}/picture?width=80&height=80">
+                        <img class="person-image" src="https://graph.facebook.com/{{userId}}/picture?width=90&height=90">
                     </div>
 
                     <p class="person-info">{{userName}}</p>
@@ -34,7 +34,7 @@
                     My routes
                 </ion-item>
                 <ion-item menu-close ng-click="loginOrLogout()" class="item-icon-left menu-icon item-balanced">
-                    <i ng-class="!isLoggedIn ? 'icon ion-social-facebook' : 'icon ion-social-tux'"></i>
+                    <i ng-class="!isLoggedIn ? 'icon ion-social-facebook' : 'icon ion-power'"></i>
                     {{isLoggedIn ? 'Logout' : 'Login with Facebook'}}
                 </ion-item>
             </ion-list>

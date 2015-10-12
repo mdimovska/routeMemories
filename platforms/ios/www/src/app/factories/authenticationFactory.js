@@ -27,6 +27,8 @@ angular.module('starter')
 
         authenticationFactory.loginUser = function () {
             var def = $q.defer();
+
+
             $cordovaFacebook.login(["public_profile", "email"])
                 .then(function (success) {
                     console.log(JSON.stringify(success));
@@ -45,8 +47,7 @@ angular.module('starter')
                             def.resolve('UserInfoRetrieved');
                         }, function (error) {
                             console.log("An error occured while getting user info: " + JSON.stringify(error));
-                            console.log("Logging out...");
-                            alert("An error occured while logging in");
+                            alert("An error occurred while logging in");
                             def.reject('UserInfoNOTRetrieved');
                         });
 
