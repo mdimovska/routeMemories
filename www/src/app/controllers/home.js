@@ -8,7 +8,13 @@ angular.module('starter')
                         uiGmapGoogleMapApi,
                         $interval,
                         mapFactory,
+                        $ionicPlatform,
                         apiFactory) {
+
+                    $ionicPlatform.registerBackButtonAction(function (event) {
+                        event.preventDefault();
+                    }, 100);
+
 
                     var timer;
 

@@ -27,8 +27,8 @@
       <file leaf-file-name="manifestMerger5436214709038046229.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib/build/intermediates/manifests/tmp/manifestMerger5436214709038046229.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4348837">
-              <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.35581395">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1819,7 +1819,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="7220542719708" />
+        <entry key="$PROJECT_DIR$" value="7220547019543" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2552,8 +2552,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib/build/intermediates/manifests/tmp/manifestMerger5436214709038046229.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4348837">
-          <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.35581395">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
