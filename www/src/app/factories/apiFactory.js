@@ -4,8 +4,8 @@ angular.module('starter')
         var apiFactory = {};
 
         apiFactory.getBaseUrl = function () {
-            //return "http://localhost:5000/"; //TODO change when everything is up and running on heroku
-            return "https://shrouded-fjord-6158.herokuapp.com/";
+            return "http://localhost:5000/";
+//            return "https://shrouded-fjord-6158.herokuapp.com/";
         }
         apiFactory.getRegisterUrl = function () {
             return apiFactory.getBaseUrl() + "register";
