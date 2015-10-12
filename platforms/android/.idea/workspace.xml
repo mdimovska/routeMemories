@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="25e88974-380e-409f-be82-9dced939913e" name="Default" comment="" />
     <ignored path="android.iws" />
@@ -27,7 +24,7 @@
       <file leaf-file-name="manifestMerger5436214709038046229.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib/build/intermediates/manifests/tmp/manifestMerger5436214709038046229.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41098902">
+            <state vertical-scroll-proportion="0.4348837">
               <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
               <folding />
             </state>
@@ -2512,7 +2509,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2552,7 +2549,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/phonegap-facebook-plugin/starter-FacebookLib/build/intermediates/manifests/tmp/manifestMerger5436214709038046229.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41098902">
+        <state vertical-scroll-proportion="0.4348837">
           <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
           <folding />
         </state>
