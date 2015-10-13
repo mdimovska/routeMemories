@@ -6,18 +6,16 @@ angular.module('starter')
                         $cordovaGeolocation,
                         $cordovaCamera,
                         uiGmapGoogleMapApi,
-                        $interval,
+//                        $interval,
                         mapFactory,
                         $ionicPlatform,
-                        locationFactory,
+//                        locationFactory,
                         apiFactory) {
 
                     $ionicPlatform.registerBackButtonAction(function (event) {
                         event.preventDefault();
                     }, 100);
 
-
-                    var timer;
 
                     $scope.clearCurrentRouteData = function () {
                         console.log("Clearing current route data...");
@@ -40,6 +38,13 @@ angular.module('starter')
                         $rootScope.started = false;
                     }
                     $scope.clearCurrentRouteData(); //initialize route data
+
+                    $scope.watchOptions = {
+                        timeout: 10000,
+                        frequency: 20000, // update every 20 seconds
+                        enableHighAccuracy: true, // may cause errors if true
+                        maximumAge: 600000
+                    };
 
                     $scope.appendPositionToLists = function (lat, lng) {
                         var location = {
@@ -105,13 +110,20 @@ angular.module('starter')
                     $scope.watchPositionChanges = function () {
                         console.log("Started watching postion changes...");
 
-                        // Don't start a new timer if one is already running
-                        if (angular.isDefined(timer)) {
-                            return;
-                        }
+                        $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
+                        $scope.watch.then(
+                                null,
+                                function (err) {
+                                    // error
+                                    console.log('An error occured while setting watch: ' + JSON.stringify(err));
+                                },
+                                function (position) {
+                                    console.log("Time: " + new Date());
+                                    var lat = position.coords.latitude;
+                                    var lng = position.coords.longitude;
+                                    calculateDistanceAndAppendOrRejectPosition(lat, lng);
+                                });
 
-                        timer = $interval(function () {
-                            console.log("Time: " + new Date());
 //                            $cordovaGeolocation
 //                                    .getCurrentPosition($scope.positionOptions)
 //                                    .then(function (position) {
@@ -124,26 +136,21 @@ angular.module('starter')
 //                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
 //                                    });
 
-
-                            locationFactory.getCurrentLocation().then(function (position) {
-                                var lat = position.latitude;
-                                var lng = position.longitude;
-                                calculateDistanceAndAppendOrRejectPosition(lat, lng);
-                            }, function (error) {
-                                // error
-                                alert('Can not get position');
-                                console.log('An error occured while getting possition: ' + JSON.stringify(error));
-                            });
-                        }, 20000);
                     }
 
                     $scope.positionOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
 
                     $scope.startOrStop = function () {
                         if (!$rootScope.started) {
-                            locationFactory.getCurrentLocation().then(function (position) {
-                                var lat = position.latitude;
-                                        var lng = position.longitude;
+//                            locationFactory.getCurrentLocation().then(function (position) {
+//                                var lat = position.latitude;
+//                                var lng = position.longitude;
+
+                            $cordovaGeolocation
+                                    .getCurrentPosition($scope.positionOptions)
+                                    .then(function (position) {
+                                        var lat = position.coords.latitude;
+                                        var lng = position.coords.longitude;
                                         $rootScope.startPosition = {
                                             "lat": lat,
                                             "lng": lng,
@@ -163,11 +170,11 @@ angular.module('starter')
 
                                         // start watching location changes
                                         $scope.watchPositionChanges();
-                            }, function (error) {
-                                // error
-                                alert('Can not get position');
-                                console.log('An error occured while getting possition: ' + JSON.stringify(error));
-                            });
+                                    }, function (error) {
+                                        // error
+                                        alert('Can not get position');
+                                        console.log('An error occured while getting possition: ' + JSON.stringify(error));
+                                    });
 //                            $cordovaGeolocation
 //                                    .getCurrentPosition($scope.positionOptions)
 //                                    .then(function (position) {
@@ -211,10 +218,7 @@ angular.module('starter')
 
                     $rootScope.stopWatchingPositionChanges = function () {
                         console.log("Stopped watching postion changes...");
-                        if (angular.isDefined(timer)) {
-                            $interval.cancel(timer);
-                            timer = undefined;
-                        }
+                        $scope.watch.clearWatch();
                     }
 
                     $scope.$on('$destroy', function () {
@@ -367,15 +371,20 @@ angular.module('starter')
                     }
 
                     $scope.appendMarkerToList = function (imageData) {
-                        locationFactory.getCurrentLocation().then(function (position) {
-                                 $scope.pushImageToList(position.latitude, position.longitude, imageData, new Date());
-                            }, function (error) {
-                                // error
-                                 alert('Can not get current position');
-                                 console.log('An error occured while getting possition. Pushing image to list with start location. Error: ' + JSON.stringify(err));
+//                        locationFactory.getCurrentLocation().then(function (position) {
+//                            $scope.pushImageToList(position.latitude, position.longitude, imageData, new Date());
+//                        }
+                        $cordovaGeolocation
+                                .getCurrentPosition($scope.positionOptions)
+                                .then(function (position) {
+                                    $scope.pushImageToList(position.coords.latitude, position.coords.longitude, imageData);
+                                }, function (error) {
+                                    // error
+                                    alert('Can not get current position');
+                                    console.log('An error occured while getting possition. Pushing image to list with start location. Error: ' + JSON.stringify(error));
                                     $scope.pushImageToList($scope.currentPosition.lat, $scope.currentPosition.lng, imageData, new Date());
-                                
-                            });
+
+                                });
 //                        $cordovaGeolocation
 //                                .getCurrentPosition($scope.positionOptions)
 //                                .then(function (position) {
