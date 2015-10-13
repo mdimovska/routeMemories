@@ -24,15 +24,20 @@ angular.module('starter')
                 var map = new maps.Map(mapElement, mapOptions);
 
                 var latLngBounds = new maps.LatLngBounds();
-                 var infoWindow = new maps.InfoWindow();
+                var infoWindow = new maps.InfoWindow();
                 if (markerList !== undefined && markerList !== null) {
                     for (var i = 0; i < markerList.length; i++) {
                         var data = markerList[i];
                         var myLatlng = new maps.LatLng(data.lat, data.lng);
+                        var markerIcon = {
+                            url: data.iconUrl,
+                            scaledSize: new maps.Size(25, 40)
+                        };
                         var marker = new maps.Marker({
                             position: myLatlng,
                             map: map,
-                            title: data.title
+                            title: data.title,
+                            icon: markerIcon
                         });
                         latLngBounds.extend(marker.position);
 
@@ -58,11 +63,16 @@ angular.module('starter')
                     for (var i = 0; i < imgList.length; i++) {
                         var image = imgList[i];
                         var imgLatlng = new maps.LatLng(image.lat, image.lng);
+                         var imageMarkerIcon = {
+                            url: 'src/assets/img/imageMarker.png',
+                            scaledSize: new maps.Size(40, 40)
+                        };
                         var imgMarker = new maps.Marker({
                             position: imgLatlng,
                             map: map,
                             clickable: true,
-                            title: image.title
+                            title: image.title,
+                            icon: imageMarkerIcon
                         });
                         latLngBounds.extend(imgMarker.position);
                         var imgSrc = "data:image/jpeg;base64," + image.imageData;
@@ -75,8 +85,8 @@ angular.module('starter')
 //                        imgMarker.addListener('mousedown', function () {
 //                            imgInfoWindow.open(map, imgMarker);
 //                        });
-                        
-                         (function (imgMarker, data) {
+
+                        (function (imgMarker, data) {
                             maps.event.addListener(imgMarker, "mousedown", function (e) {
                                 infoWindow.setContent(content);
                                 infoWindow.open(map, imgMarker);

@@ -41,9 +41,9 @@ angular.module('starter')
 
                     $scope.watchOptions = {
                         timeout: 10000,
-                        frequency: 20000, // update every 20 seconds
+                        frequency: 15000, // update every 15 seconds
                         enableHighAccuracy: true, // may cause errors if true
-                        maximumAge: 600000
+                        maximumAge: 60000
                     };
 
                     $scope.appendPositionToLists = function (lat, lng) {

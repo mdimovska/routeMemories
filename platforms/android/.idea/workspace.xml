@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="25e88974-380e-409f-be82-9dced939913e" name="Default" comment="" />
     <ignored path="android.iws" />
@@ -1808,7 +1805,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="7220856336457" />
+        <entry key="$PROJECT_DIR$" value="7220859084356" />
       </map>
     </option>
     <option name="projectBuildClasspath">
