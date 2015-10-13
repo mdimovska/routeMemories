@@ -27,6 +27,8 @@ angular.module('starter')
 
         authenticationFactory.loginUser = function () {
             var def = $q.defer();
+
+
             $cordovaFacebook.login(["public_profile", "email"])
                 .then(function (success) {
                     console.log(JSON.stringify(success));

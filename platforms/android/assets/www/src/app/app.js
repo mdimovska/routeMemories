@@ -14,10 +14,11 @@ angular.module('starter',
         .config(function ($stateProvider,
                 $urlRouterProvider,
                 uiGmapGoogleMapApiProvider,
+                          $rootScopeProvider,
                 //$cordovaFacebookProvider,
 //                $cordovaFacebook,
                 $compileProvider) {
-
+            $rootScopeProvider.digestTtl(200);
             $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
 
             var appID = 907283522693609;
@@ -103,6 +104,8 @@ angular.module('starter',
         })
 
         .run(function ($ionicPlatform) {
+
+
             $ionicPlatform.ready(function () {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
