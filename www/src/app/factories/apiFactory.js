@@ -11,8 +11,8 @@ angular.module('starter')
                 return apiFactory.getBaseUrl() + "register";
             }
             apiFactory.getRoutesByUserUrl = function (userId) {
-            return apiFactory.getBaseUrl() + "routes/getRoutesByUser?userId=" + userId;
-//                return apiFactory.getBaseUrl() + "routes";
+//            return apiFactory.getBaseUrl() + "routes/getRoutesByUser?userId=" + userId;
+                return apiFactory.getBaseUrl() + "routes";
             }
             apiFactory.getPhotosByRouteUrl = function (routeId) {
                 return apiFactory.getBaseUrl() + "images/getImagesByRoute?routeId=" + routeId;

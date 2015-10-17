@@ -90,10 +90,22 @@ angular.module('starter')
 
                 //***********ROUTING****************//
 
-                var directionsService = new maps.DirectionsService;
-                var directionsDisplay = new maps.DirectionsRenderer;
-                directionsDisplay.setMap(map);
-                calculateAndDisplayRoute(maps, directionsService, directionsDisplay, latLngList);
+                var flightPath = new maps.Polyline({
+                    path: latLngList,
+                    geodesic: true,
+                    strokeColor: '#16a085',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 5
+                });
+                flightPath.setMap(map);
+
+//                2 way
+//                var directionsService = new maps.DirectionsService;
+//                var directionsDisplay = new maps.DirectionsRenderer;
+//                directionsDisplay.setMap(map);
+//                calculateAndDisplayRoute(maps, directionsService, directionsDisplay, latLngList);
+
+//                1 way
 //                //Initialize the Path Array
 //                var path = new maps.MVCArray();
 //
@@ -152,7 +164,7 @@ angular.module('starter')
                     var subarray = array[i];
                     var src = subarray[0].location;
                     var des = subarray[subarray.length - 1].location;
-                    
+
                     directionsService.route({
                         origin: src,
                         destination: des,
