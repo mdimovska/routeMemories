@@ -72,7 +72,7 @@ angular.module('starter')
                                         "description": "Middle position",
                                         "iconUrl": "src/assets/img/marker2.png"
                                     }
-                                    markerList.push(middleMarker);
+//                                    markerList.push(middleMarker);
                                 }
                             });
                         }

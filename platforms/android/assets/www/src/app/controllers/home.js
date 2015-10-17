@@ -6,7 +6,7 @@ angular.module('starter')
                         $cordovaGeolocation,
                         $cordovaCamera,
                         uiGmapGoogleMapApi,
-//                        $interval,
+                        $interval,
                         mapFactory,
                         $ionicPlatform,
 //                        locationFactory,
@@ -88,44 +88,50 @@ angular.module('starter')
                     }
                     ;
 
+                    var interval;
                     $scope.watchPositionChanges = function () {
                         console.log("Started watching postion changes...");
 
-                        $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
-                        $scope.watch.then(
-                                null,
-                                function (err) {
-                                    // error
-                                    console.log('An error occured while setting watch: ' + JSON.stringify(err));
-                                },
-                                function (position) {
-                                    console.log("Time: " + new Date());
-                                    var lat = position.coords.latitude;
-                                    var lng = position.coords.longitude;
-                                    calculateDistanceAndAppendOrRejectPosition(lat, lng);
-                                });
+                        if (angular.isDefined(interval)) {
+                            return;
+                        }
 
-                        //                            $cordovaGeolocation
-                        //                                    .getCurrentPosition($scope.positionOptions)
-                        //                                    .then(function (position) {
-                        //                                        var lat = position.coords.latitude;
-                        //                                        var lng = position.coords.longitude;
-                        //                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
-//                                    }, function (err) {
-                        //                                        // error
-                        //                                        alert('Can not get position');
-                        //                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
-//                                    });
+                        interval = setInterval(function () {
+                            $cordovaGeolocation
+                                    .getCurrentPosition($scope.positionOptions)
+                                    .then(function (position) {
+                                        console.log("Time: " + new Date());
+                                        var lat = position.coords.latitude;
+                                        var lng = position.coords.longitude;
+                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
+                                    }, function (err) {
+                                        // error
+                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
+                                    });
+                        }, 10000);
 
+//                        $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
+//                        $scope.watch.then(
+//                                null,
+//                                function (err) {
+//                                    // error
+//                                    console.log('An error occured while setting watch: ' + JSON.stringify(err));
+//                                },
+//                                function (position) {
+//                                    console.log("Time: " + new Date());
+//                                    var lat = position.coords.latitude;
+//                                    var lng = position.coords.longitude;
+//                                    calculateDistanceAndAppendOrRejectPosition(lat, lng);
+//                                });
                     }
 
                     $scope.positionOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
 
                     $scope.startOrStop = function () {
                         if (!$rootScope.started) {
-                            //                            locationFactory.getCurrentLocation().then(function (position) {
+//                            locationFactory.getCurrentLocation().then(function (position) {
 //                                var lat = position.latitude;
-                            //                                var lng = position.longitude;
+//                                var lng = position.longitude;
 
                             $cordovaGeolocation
                                     .getCurrentPosition($scope.positionOptions)
@@ -157,35 +163,6 @@ angular.module('starter')
                                         alert('Can not get position');
                                         console.log('An error occured while getting possition: ' + JSON.stringify(error));
                                     });
-                            //                            $cordovaGeolocation
-                            //                                    .getCurrentPosition($scope.positionOptions)
-                            //                                    .then(function (position) {
-                            //                                        var lat = position.coords.latitude;
-                            //                                        var lng = position.coords.longitude;
-                            //                                        $rootScope.startPosition = {
-                            //                                            "lat": lat,
-                            //                                            "lng": lng,
-                            //                                        }
-//
-                            //                                        var marker = {
-                            //                                            "title": 'My location',
-//                                            "lat": lat,
-                            //                                            "lng": lng,
-//                                            "description": "Start position"
-                            //                                        }
-                            //                                        $rootScope.routeObject.markers.push(marker);
-//
-                            //                                        $rootScope.started = true;
-                            //                                        $rootScope.routeObject.startDate = new Date();
-                            //                                        $scope.appendPositionToLists(lat, lng);
-//
-                            //                                        // start watching location changes
-                            //                                        $scope.watchPositionChanges();
-                            //                                    }, function (err) {
-//                                        // error
-                            //                                        alert('Can not get current position');
-//                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
-//                                    });
                         } else {
                             $rootScope.started = false;
                             $rootScope.routeObject.endDate = new Date();
@@ -200,8 +177,13 @@ angular.module('starter')
 
                     $rootScope.stopWatchingPositionChanges = function () {
                         console.log("Stopped watching postion changes...");
-                        if ($scope.watch !== undefined && $scope.watch !== null) {
-                            $scope.watch.clearWatch();
+//                        if ($scope.watch !== undefined && $scope.watch !== null) {
+//                            $scope.watch.clearWatch();
+//                        }
+                        if (angular.isDefined(interval)) {
+//                            $interval.cancel(interval);
+                            clearInterval(interval);
+                            interval = undefined;
                         }
                     }
 
