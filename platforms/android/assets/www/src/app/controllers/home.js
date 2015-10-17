@@ -160,7 +160,8 @@ angular.module('starter')
                                             "title": 'My location',
                                             "lat": lat,
                                             "lng": lng,
-                                            "description": "Start position"
+                                            "description": "Start position",
+                                            "iconUrl": "src/assets/img/marker1.png"
                                         }
                                         $rootScope.routeObject.markers.push(marker);
 
@@ -221,6 +222,7 @@ angular.module('starter')
                         $scope.watch.clearWatch();
                     }
 
+                    // TODO check this!!!
                     $scope.$on('$destroy', function () {
                         console.log("ondestroy called");
                         // Make sure that the interval is destroyed too

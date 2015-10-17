@@ -60,9 +60,19 @@ angular.module('starter')
                                         "lat": latAndLng[0],
                                         "lng": latAndLng[1],
                                         "description": "End position",
-                                        "iconUrl": "src/assets/img/marker2.png"
+                                        "iconUrl": "src/assets/img/marker1.png"
                                     }
                                     markerList.push(endMarker);
+                                } else {
+                                    // TODO delete
+                                     var middleMarker = {
+                                        "title": 'Middle location',
+                                        "lat": latAndLng[0],
+                                        "lng": latAndLng[1],
+                                        "description": "Middle position",
+                                        "iconUrl": "src/assets/img/marker2.png"
+                                    }
+                                    markerList.push(middleMarker);
                                 }
                             });
                         }

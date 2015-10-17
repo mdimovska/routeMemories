@@ -49,7 +49,8 @@ angular.module('starter')
                                         "title": 'My location',
                                         "lat": latAndLng[0],
                                         "lng": latAndLng[1],
-                                        "description": "Start position"
+                                        "description": "Start position",
+                                        "iconUrl": "src/assets/img/marker1.png"
                                     }
                                     markerList.push(startMarker);
                                 } else if (index === (positonList.length - 1)) {
@@ -58,7 +59,8 @@ angular.module('starter')
                                         "title": 'Final location',
                                         "lat": latAndLng[0],
                                         "lng": latAndLng[1],
-                                        "description": "End position"
+                                        "description": "End position",
+                                        "iconUrl": "src/assets/img/marker2.png"
                                     }
                                     markerList.push(endMarker);
                                 }

@@ -219,9 +219,12 @@ angular.module('starter')
 
                     $rootScope.stopWatchingPositionChanges = function () {
                         console.log("Stopped watching postion changes...");
-                        $scope.watch.clearWatch();
+                        if ($scope.watch !== undefined && $scope.watch !== null) {
+                            $scope.watch.clearWatch();
+                        }
                     }
 
+                    // TODO check this!!!
                     $scope.$on('$destroy', function () {
                         console.log("ondestroy called");
                         // Make sure that the interval is destroyed too
