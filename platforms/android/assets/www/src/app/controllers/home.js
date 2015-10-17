@@ -76,33 +76,14 @@ angular.module('starter')
                             var location2 = new maps.LatLng(
                                     latitude,
                                     longitude);
-
-                            directionsService = new maps.DirectionsService();
-                            directionsDisplay = new maps.DirectionsRenderer({
-                                suppressMarkers: true,
-                                suppressInfoWindows: true
-                            });
-                            var request = {
-                                origin: location1,
-                                destination: location2,
-                                travelMode: maps.DirectionsTravelMode.WALKING
-                            };
-                            directionsService.route(request, function (response, status) {
-                                if (status == maps.DirectionsStatus.OK)
-                                {
-                                    var distance = parseFloat(response.routes[0].legs[0].distance.value);
-                                    console.log('distance: ' + distance);
-//                                    if (distance < 30) {
-                                    if (distance > 0) {
-                                        // append position to list
-                                        console.log("appending position to list");
-                                        $scope.appendPositionToLists(latitude, longitude);
-                                    }
-                                } else {
-                                    console.log('getting distance status: ' + status);
-                                    console.log('getting distance response: ' + JSON.stringify(response));
-                                }
-                            });
+                            // distance in meters
+                            var calculatedDistance = maps.geometry.spherical.computeDistanceBetween(location1, location2);
+                            console.log('distance: ' + calculatedDistance);
+                            if (calculatedDistance > 0) {
+                                // append position to list
+                                console.log("appending position to list");
+                                $scope.appendPositionToLists(latitude, longitude);
+                            }
                         });
                     }
                     ;
@@ -124,16 +105,16 @@ angular.module('starter')
                                     calculateDistanceAndAppendOrRejectPosition(lat, lng);
                                 });
 
-//                            $cordovaGeolocation
-//                                    .getCurrentPosition($scope.positionOptions)
-//                                    .then(function (position) {
-//                                        var lat = position.coords.latitude;
-//                                        var lng = position.coords.longitude;
-//                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
+                        //                            $cordovaGeolocation
+                        //                                    .getCurrentPosition($scope.positionOptions)
+                        //                                    .then(function (position) {
+                        //                                        var lat = position.coords.latitude;
+                        //                                        var lng = position.coords.longitude;
+                        //                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
 //                                    }, function (err) {
-//                                        // error
-//                                        alert('Can not get position');
-//                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
+                        //                                        // error
+                        //                                        alert('Can not get position');
+                        //                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
 //                                    });
 
                     }
@@ -142,9 +123,9 @@ angular.module('starter')
 
                     $scope.startOrStop = function () {
                         if (!$rootScope.started) {
-//                            locationFactory.getCurrentLocation().then(function (position) {
+                            //                            locationFactory.getCurrentLocation().then(function (position) {
 //                                var lat = position.latitude;
-//                                var lng = position.longitude;
+                            //                                var lng = position.longitude;
 
                             $cordovaGeolocation
                                     .getCurrentPosition($scope.positionOptions)
@@ -176,33 +157,33 @@ angular.module('starter')
                                         alert('Can not get position');
                                         console.log('An error occured while getting possition: ' + JSON.stringify(error));
                                     });
-//                            $cordovaGeolocation
-//                                    .getCurrentPosition($scope.positionOptions)
-//                                    .then(function (position) {
-//                                        var lat = position.coords.latitude;
-//                                        var lng = position.coords.longitude;
-//                                        $rootScope.startPosition = {
-//                                            "lat": lat,
-//                                            "lng": lng,
-//                                        }
+                            //                            $cordovaGeolocation
+                            //                                    .getCurrentPosition($scope.positionOptions)
+                            //                                    .then(function (position) {
+                            //                                        var lat = position.coords.latitude;
+                            //                                        var lng = position.coords.longitude;
+                            //                                        $rootScope.startPosition = {
+                            //                                            "lat": lat,
+                            //                                            "lng": lng,
+                            //                                        }
 //
-//                                        var marker = {
-//                                            "title": 'My location',
+                            //                                        var marker = {
+                            //                                            "title": 'My location',
 //                                            "lat": lat,
-//                                            "lng": lng,
+                            //                                            "lng": lng,
 //                                            "description": "Start position"
-//                                        }
-//                                        $rootScope.routeObject.markers.push(marker);
+                            //                                        }
+                            //                                        $rootScope.routeObject.markers.push(marker);
 //
-//                                        $rootScope.started = true;
-//                                        $rootScope.routeObject.startDate = new Date();
-//                                        $scope.appendPositionToLists(lat, lng);
+                            //                                        $rootScope.started = true;
+                            //                                        $rootScope.routeObject.startDate = new Date();
+                            //                                        $scope.appendPositionToLists(lat, lng);
 //
-//                                        // start watching location changes
-//                                        $scope.watchPositionChanges();
-//                                    }, function (err) {
+                            //                                        // start watching location changes
+                            //                                        $scope.watchPositionChanges();
+                            //                                    }, function (err) {
 //                                        // error
-//                                        alert('Can not get current position');
+                            //                                        alert('Can not get current position');
 //                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
 //                                    });
                         } else {
@@ -219,7 +200,9 @@ angular.module('starter')
 
                     $rootScope.stopWatchingPositionChanges = function () {
                         console.log("Stopped watching postion changes...");
-                        $scope.watch.clearWatch();
+                        if ($scope.watch !== undefined && $scope.watch !== null) {
+                            $scope.watch.clearWatch();
+                        }
                     }
 
                     // TODO check this!!!
@@ -287,7 +270,6 @@ angular.module('starter')
                     $scope.showMapModal = function () {
                         $scope.modal.show();
                     };
-
 
                     // Create the end route modal that we will use later
                     $ionicModal.fromTemplateUrl('src/app/views/endRouteModal.html', {
@@ -373,9 +355,8 @@ angular.module('starter')
                     }
 
                     $scope.appendMarkerToList = function (imageData) {
-//                        locationFactory.getCurrentLocation().then(function (position) {
-//                            $scope.pushImageToList(position.latitude, position.longitude, imageData, new Date());
-//                        }
+                        //                        locationFactory.getCurrentLocation().then(function (position) {
+                        //                            $scope.pushImageToList(position.latitude, position.longitude, imageData, new Date()); //                        }
                         $cordovaGeolocation
                                 .getCurrentPosition($scope.positionOptions)
                                 .then(function (position) {
@@ -387,15 +368,14 @@ angular.module('starter')
                                     $scope.pushImageToList($scope.currentPosition.lat, $scope.currentPosition.lng, imageData, new Date());
 
                                 });
-//                        $cordovaGeolocation
-//                                .getCurrentPosition($scope.positionOptions)
-//                                .then(function (position) {
-//                                    $scope.pushImageToList(position.coords.latitude, position.coords.longitude, imageData, new Date());
-//                                }, function (err) {
-//                                    // error
-//                                    alert('Can not get current position');
-//                                    console.log('An error occured while getting possition. Pushing image to list with start location. Error: ' + JSON.stringify(err));
-//                                    $scope.pushImageToList($scope.currentPosition.lat, $scope.currentPosition.lng, imageData, new Date());
+                        //                        $cordovaGeolocation
+                        //                                .getCurrentPosition($scope.positionOptions)
+                        //                                .then(function (position) {
+                        //                                    $scope.pushImageToList(position.coords.latitude, position.coords.longitude, imageData, new Date());
+                        //                                }, function (err) { //                                    // error
+                        //                                    alert('Can not get current position');
+                        //                                    console.log('An error occured while getting possition. Pushing image to list with start location. Error: ' + JSON.stringify(err));
+                        //                                    $scope.pushImageToList($scope.currentPosition.lat, $scope.currentPosition.lng, imageData, new Date());
 //                                });
                     }
 
