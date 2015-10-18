@@ -20,6 +20,8 @@ angular.module('starter')
                     $scope.clearCurrentRouteData = function () {
                         console.log("Clearing current route data...");
 
+                        $rootScope.isStopClicked = false;
+
                         $rootScope.routeObject = {};
                         $rootScope.positionList = new Array();
                         $rootScope.latLngList = new Array();
@@ -79,10 +81,21 @@ angular.module('starter')
                             // distance in meters
                             var calculatedDistance = maps.geometry.spherical.computeDistanceBetween(location1, location2);
                             console.log('distance: ' + calculatedDistance);
-                            if (calculatedDistance > 0) {
-                                // append position to list
-                                console.log("appending position to list");
-                                $scope.appendPositionToLists(latitude, longitude);
+
+                            if ($rootScope.isStopClicked) {
+                                $rootScope.isStopClicked = false;
+                                // if previously stop button was clicked, append position no matter of the distance...
+                                if (calculatedDistance > 0) {
+                                    // append position to list
+                                    console.log("appending position to list");
+                                    $scope.appendPositionToLists(latitude, longitude);
+                                }
+                            } else {
+                                if (calculatedDistance > 0 && calculatedDistance <= 30) {
+                                    // append position to list
+                                    console.log("appending position to list");
+                                    $scope.appendPositionToLists(latitude, longitude);
+                                }
                             }
                         });
                     }
@@ -164,6 +177,7 @@ angular.module('starter')
                                         console.log('An error occured while getting possition: ' + JSON.stringify(error));
                                     });
                         } else {
+                            $rootScope.isStopClicked = true;
                             $rootScope.started = false;
                             $rootScope.routeObject.endDate = new Date();
 
