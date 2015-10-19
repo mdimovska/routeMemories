@@ -74,6 +74,10 @@ angular.module('starter')
                 $scope.route.imgList,
                 latLngList,
                 true);
-        }
+        };
+
+        $scope.closeInfoWindow =function() {
+            mapFactory.closeInfoWindow();
+        };
 
     });

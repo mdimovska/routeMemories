@@ -187,3 +187,12 @@ ion-item.person-info {
     border-bottom: 0 none;
     padding-bottom: 5px;
 }
+
+div.info-window div.close {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    cursor: pointer;
+    right: -30px;
+    top: -30px;
+}

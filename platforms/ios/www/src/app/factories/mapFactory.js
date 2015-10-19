@@ -11,6 +11,7 @@ angular.module('starter')
             };
             return mapOptions;
         }
+        var infoWindow;
 
         mapFactory.showMap = function (maps, mapCenter, mapElement,
                                        markerList,
@@ -21,7 +22,8 @@ angular.module('starter')
             var mapOptions = getMapOptions(maps, mapCenter);
             var map = new maps.Map(mapElement, mapOptions);
             var latLngBounds = new maps.LatLngBounds();
-            var infoWindow = new maps.InfoWindow();
+            infoWindow = new maps.InfoWindow();
+
             if (markerList !== undefined && markerList !== null) {
                 for (var i = 0; i < markerList.length; i++) {
                     var data = markerList[i];
@@ -41,7 +43,6 @@ angular.module('starter')
                         maps.event.addListener(marker, "mousedown", function (e) {
                             infoWindow.close();
                             infoWindow.setContent("<div>" + data.description + "</div>");
-                            safeApply($rootScope);
                             infoWindow.open(map, marker);
                         });
                     })(marker, data);
@@ -65,19 +66,25 @@ angular.module('starter')
                         icon: imageMarkerIcon
                     });
                     latLngBounds.extend(imgMarker.position);
-                    var imgSrc = "data:image/jpeg;base64," + image.imageData;
-                    var content = '<img style="width: 200px; height: 200px" src="' + imgSrc + '">';
 
-                    (function (imgMarker, data) {
+                    (function (imgMarker, image) {
                         maps.event.addListener(imgMarker, "mousedown", function (e) {
                             infoWindow.close();
+                            var imgSrc = "data:image/jpeg;base64," + image.imageData;
+                            var content = '<div class="info-window"><div class="close" onmousedown="closeInfoWindowGlobal()"></div><img style="width: 200px; height: 200px" src="' + imgSrc + '"></div>';
                             infoWindow.setContent(content);
-                            safeApply($rootScope);
                             infoWindow.open(map, imgMarker);
                         });
-                    })(imgMarker, data);
+                    })(imgMarker, image);
                 }
             }
+
+
+            //maps.event.addListener(  infoWindow, 'closeclick', function(){
+            //    infoWindow.close();
+            //});
+
+
             if (shouldPositionMapInCenter !== undefined && shouldPositionMapInCenter === true) {
                 map.setCenter(latLngBounds.getCenter());
                 map.fitBounds(latLngBounds);
@@ -94,13 +101,16 @@ angular.module('starter')
             });
             path.setMap(map);
 
-        }
+        };
 
-        function safeApply(scope) {
-            if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
-                scope.$apply();
-            }
-        }
+
+        mapFactory.closeInfoWindow =function(){
+            infoWindow.close();
+        };
 
         return mapFactory;
     });
+
+function closeInfoWindowGlobal(){
+    angular.element(document.getElementById("ionViewRoute")).scope().closeInfoWindow();
+}
