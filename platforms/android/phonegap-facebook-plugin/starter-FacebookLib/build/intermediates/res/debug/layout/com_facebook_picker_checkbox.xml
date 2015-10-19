@@ -23,4 +23,4 @@
     android:focusable="false"
     android:clickable="false"
     android:button="@drawable/com_facebook_button_check" />
-<!-- From: file:/C:/Users/midimovs/magisterski/MISW/routeMemories-repo/platforms/android/phonegap-facebook-plugin/starter-FacebookLib/res/layout/com_facebook_picker_checkbox.xml -->
+<!-- From: file:/Users/gkopevski/gk/git/routeMemories/platforms/android/phonegap-facebook-plugin/starter-FacebookLib/res/layout/com_facebook_picker_checkbox.xml -->

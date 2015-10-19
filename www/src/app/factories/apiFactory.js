@@ -57,11 +57,11 @@ angular.module('starter')
 
             apiFactory.addRoute = function (route, userId) {
                 console.log(userId);
-                console.log(route.positionListString);
-                console.log(route.startDate);
-                console.log(route.endDate);
-                console.log(route.routeName);
-                console.log(JSON.stringify(route.imgList));
+                //console.log(route.positionListString);
+                //console.log(route.startDate);
+                //console.log(route.endDate);
+                //console.log(route.routeName);
+                //console.log(JSON.stringify(route.imgList));
 
                 // TODO delete
 //                var image = {

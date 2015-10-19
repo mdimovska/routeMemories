@@ -6,7 +6,7 @@ angular.module('starter')
                         $cordovaGeolocation,
                         $cordovaCamera,
                         uiGmapGoogleMapApi,
-                        $interval,
+//                        $interval,
                         mapFactory,
                         $ionicPlatform,
 //                        locationFactory,
@@ -67,7 +67,7 @@ angular.module('starter')
                         });
                     }
 
-                    function calculateDistanceAndAppendOrRejectPosition(latitude, longitude) {
+                    function calculateDistanceAndAppendOrRejectPosition(latitude, longitude, currentTimestamp) {
                         uiGmapGoogleMapApi.then(function (maps) {
                             // calculate distance from the last position
                             // if distance < 15m, do not append the position to the list
@@ -91,51 +91,57 @@ angular.module('starter')
                                     $scope.appendPositionToLists(latitude, longitude);
                                 }
                             } else {
-                                if (calculatedDistance > 0 && calculatedDistance <= 30) {
+                                var time = (currentTimestamp - $scope.previousTimestamp) / 1000; // seconds
+                                console.log("Time that passed from the last position change: " + time + "s");
+                                // average walking speed ~ 5km/h ~ 1.4 m/s
+                                var estimatedDistance = 1.4 * time; // meters
+
+                                if (calculatedDistance > 0 && calculatedDistance <= (estimatedDistance + time)) {
                                     // append position to list
                                     console.log("appending position to list");
                                     $scope.appendPositionToLists(latitude, longitude);
                                 }
                             }
+                            $scope.previousTimestamp = currentTimestamp;
                         });
                     }
                     ;
 
-                    var interval;
+//                    var interval;
                     $scope.watchPositionChanges = function () {
                         console.log("Started watching postion changes...");
 
-                        if (angular.isDefined(interval)) {
-                            return;
-                        }
+//                        if (angular.isDefined(interval)) {
+//                            return;
+//                        }
+//
+//                        interval = setInterval(function () {
+//                            $cordovaGeolocation
+//                                    .getCurrentPosition($scope.positionOptions)
+//                                    .then(function (position) {
+//                                        console.log("Time: " + new Date());
+//                                        var lat = position.coords.latitude;
+//                                        var lng = position.coords.longitude;
+//                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
+//                                    }, function (err) {
+//                                        // error
+//                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
+//                                    });
+//                        }, 10000);
 
-                        interval = setInterval(function () {
-                            $cordovaGeolocation
-                                    .getCurrentPosition($scope.positionOptions)
-                                    .then(function (position) {
-                                        console.log("Time: " + new Date());
-                                        var lat = position.coords.latitude;
-                                        var lng = position.coords.longitude;
-                                        calculateDistanceAndAppendOrRejectPosition(lat, lng);
-                                    }, function (err) {
-                                        // error
-                                        console.log('An error occured while getting possition: ' + JSON.stringify(err));
-                                    });
-                        }, 10000);
-
-//                        $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
-//                        $scope.watch.then(
-//                                null,
-//                                function (err) {
-//                                    // error
-//                                    console.log('An error occured while setting watch: ' + JSON.stringify(err));
-//                                },
-//                                function (position) {
-//                                    console.log("Time: " + new Date());
-//                                    var lat = position.coords.latitude;
-//                                    var lng = position.coords.longitude;
-//                                    calculateDistanceAndAppendOrRejectPosition(lat, lng);
-//                                });
+                        $scope.watch = $cordovaGeolocation.watchPosition($scope.watchOptions);
+                        $scope.watch.then(
+                                null,
+                                function (err) {
+                                    // error
+                                    console.log('An error occured while setting watch: ' + JSON.stringify(err));
+                                },
+                                function (position) {
+                                    console.log("Time: " + new Date());
+                                    var lat = position.coords.latitude;
+                                    var lng = position.coords.longitude;
+                                    calculateDistanceAndAppendOrRejectPosition(lat, lng, position.timestamp);
+                                });
                     }
 
                     $scope.positionOptions = {timeout: 10000, enableHighAccuracy: true, maximumAge: 600000};
@@ -166,6 +172,7 @@ angular.module('starter')
                                         $rootScope.routeObject.markers.push(marker);
 
                                         $rootScope.started = true;
+                                        $scope.previousTimestamp = position.timestamp;
                                         $rootScope.routeObject.startDate = new Date();
                                         $scope.appendPositionToLists(lat, lng);
 
@@ -191,14 +198,14 @@ angular.module('starter')
 
                     $rootScope.stopWatchingPositionChanges = function () {
                         console.log("Stopped watching postion changes...");
-//                        if ($scope.watch !== undefined && $scope.watch !== null) {
-//                            $scope.watch.clearWatch();
-//                        }
-                        if (angular.isDefined(interval)) {
-//                            $interval.cancel(interval);
-                            clearInterval(interval);
-                            interval = undefined;
+                        if ($scope.watch !== undefined && $scope.watch !== null) {
+                            $scope.watch.clearWatch();
                         }
+//                        if (angular.isDefined(interval)) {
+////                            $interval.cancel(interval);
+//                            clearInterval(interval);
+//                            interval = undefined;
+//                        }
                     }
 
                     // TODO check this!!!

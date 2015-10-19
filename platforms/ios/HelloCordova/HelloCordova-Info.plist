@@ -158,6 +158,78 @@
           <string>fb907283522693609</string>
         </array>
       </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb907283522693609</string>
+        </array>
+      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>0.0.1</string>
@@ -282,18 +354,8 @@
     </array>
     <key>NSAppTransportSecurity</key>
     <dict>
-      <key>NSExceptionDomains</key>
-      <dict>
-        <key>facebook.com</key>
-        <dict>
-          <key>NSIncludesSubdomains</key>
-          <true/>
-          <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-          <key>NSTemporaryExceptionMinimumTLSVersion</key>
-          <string>TLSv1.1</string>
-        </dict>
-      </dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
     </dict>
   </dict>
 </plist>

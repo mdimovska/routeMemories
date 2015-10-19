@@ -1,130 +1,106 @@
 angular.module('starter')
 
-        .factory('mapFactory', function mapFactory() {
+    .factory('mapFactory', function($rootScope) {
 
-            var mapFactory = {};
+        var mapFactory = {};
+        getMapOptions = function (maps, mapCenter) {
+            var mapOptions = {
+                center: mapCenter,
+                zoom: 17,
+                mapTypeId: maps.MapTypeId.ROADMAP
+            };
+            return mapOptions;
+        }
 
-            getMapOptions = function (maps, mapCenter) {
-                var mapOptions = {
-                    center: mapCenter,
-                    zoom: 17,
-                    mapTypeId: maps.MapTypeId.ROADMAP
-                };
-                return mapOptions;
-            }
+        mapFactory.showMap = function (maps, mapCenter, mapElement,
+                                       markerList,
+                                       imgList,
+                                       latLngList,
+                                       shouldPositionMapInCenter) {
 
-            mapFactory.showMap = function (
-                    maps, mapCenter, mapElement,
-                    markerList,
-                    imgList,
-                    latLngList,
-                    shouldPositionMapInCenter) {
-
-                var mapOptions = getMapOptions(maps, mapCenter);
-                var map = new maps.Map(mapElement, mapOptions);
-
-                var latLngBounds = new maps.LatLngBounds();
-                 var infoWindow = new maps.InfoWindow();
-                if (markerList !== undefined && markerList !== null) {
-                    for (var i = 0; i < markerList.length; i++) {
-                        var data = markerList[i];
-                        var myLatlng = new maps.LatLng(data.lat, data.lng);
-                        var marker = new maps.Marker({
-                            position: myLatlng,
-                            map: map,
-                            title: data.title
+            var mapOptions = getMapOptions(maps, mapCenter);
+            var map = new maps.Map(mapElement, mapOptions);
+            var latLngBounds = new maps.LatLngBounds();
+            var infoWindow = new maps.InfoWindow();
+            if (markerList !== undefined && markerList !== null) {
+                for (var i = 0; i < markerList.length; i++) {
+                    var data = markerList[i];
+                    var myLatlng = new maps.LatLng(data.lat, data.lng);
+                    var markerIcon = {
+                        url: data.iconUrl,
+                        scaledSize: new maps.Size(31, 50) //25, 40
+                    };
+                    var marker = new maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        title: data.title,
+                        icon: markerIcon
+                    });
+                    latLngBounds.extend(marker.position);
+                    (function (marker, data) {
+                        maps.event.addListener(marker, "mousedown", function (e) {
+                            infoWindow.close();
+                            infoWindow.setContent("<div>" + data.description + "</div>");
+                            safeApply($rootScope);
+                            infoWindow.open(map, marker);
                         });
-                        latLngBounds.extend(marker.position);
-
-//                        var infoWindow = new maps.InfoWindow({
-//                            content: "<div>" + data.description + "</div>"
-//                        });
-//                        marker.addListener('mousedown', function () {
-//                            infoWindow.open(map, marker);
-//                        });
-
-                        (function (marker, data) {
-                            maps.event.addListener(marker, "mousedown", function (e) {
-                                infoWindow.setContent("<div>" + data.description + "</div>");
-                                infoWindow.open(map, marker);
-                            });
-                        })(marker, data);
-
-                    }
-                }
-
-                if (imgList !== undefined && imgList !== null) {
-                    // add image markers to map
-                    for (var i = 0; i < imgList.length; i++) {
-                        var image = imgList[i];
-                        var imgLatlng = new maps.LatLng(image.lat, image.lng);
-                        var imgMarker = new maps.Marker({
-                            position: imgLatlng,
-                            map: map,
-                            clickable: true,
-                            title: image.title
-                        });
-                        latLngBounds.extend(imgMarker.position);
-                        var imgSrc = "data:image/jpeg;base64," + image.imageData;
-                        var content = '<img style="width: 200px; height: 200px" src="' + imgSrc + '">';
-//                        var imgInfoWindow = new maps.InfoWindow(
-//                                {
-//                                    content: content
-//                                }
-//                        );
-//                        imgMarker.addListener('mousedown', function () {
-//                            imgInfoWindow.open(map, imgMarker);
-//                        });
-                        
-                         (function (imgMarker, data) {
-                            maps.event.addListener(imgMarker, "mousedown", function (e) {
-                                infoWindow.setContent(content);
-                                infoWindow.open(map, imgMarker);
-                            });
-                        })(imgMarker, data);
-
-                    }
-                }
-                if (shouldPositionMapInCenter !== undefined && shouldPositionMapInCenter === true) {
-                    map.setCenter(latLngBounds.getCenter());
-                    map.fitBounds(latLngBounds);
-                }
-
-                //***********ROUTING****************//
-
-                //Initialize the Path Array
-                var path = new maps.MVCArray();
-
-                //Initialize the Direction Service
-                var service = new maps.DirectionsService();
-
-                //Set the Path Stroke Color
-                var poly = new maps.Polyline({map: map, strokeColor: '#16a085'});
-
-                //Loop and Draw Path Route between the Points on MAP
-                if (latLngList !== undefined && latLngList !== null) {
-
-                    for (var i = 0; i < latLngList.length; i++) {
-                        if ((i + 1) < latLngList.length) {
-                            var src = latLngList[i];
-                            var des = latLngList[i + 1];
-                            path.push(src);
-                            poly.setPath(path);
-                            service.route({
-                                origin: src,
-                                destination: des,
-                                travelMode: maps.DirectionsTravelMode.WALKING
-                            }, function (result, status) {
-                                if (status == maps.DirectionsStatus.OK) {
-                                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                                        path.push(result.routes[0].overview_path[i]);
-                                    }
-                                }
-                            });
-                        }
-                    }
+                    })(marker, data);
                 }
             }
 
-            return mapFactory;
-        })
+            if (imgList !== undefined && imgList !== null) {
+                // add image markers to map
+                for (var i = 0; i < imgList.length; i++) {
+                    var image = imgList[i];
+                    var imgLatlng = new maps.LatLng(image.lat, image.lng);
+                    var imageMarkerIcon = {
+                        url: 'src/assets/img/imageMarker.png',
+                        scaledSize: new maps.Size(40, 40)
+                    };
+                    var imgMarker = new maps.Marker({
+                        position: imgLatlng,
+                        map: map,
+                        clickable: true,
+                        title: image.title,
+                        icon: imageMarkerIcon
+                    });
+                    latLngBounds.extend(imgMarker.position);
+                    var imgSrc = "data:image/jpeg;base64," + image.imageData;
+                    var content = '<img style="width: 200px; height: 200px" src="' + imgSrc + '">';
+
+                    (function (imgMarker, data) {
+                        maps.event.addListener(imgMarker, "mousedown", function (e) {
+                            infoWindow.close();
+                            infoWindow.setContent(content);
+                            safeApply($rootScope);
+                            infoWindow.open(map, imgMarker);
+                        });
+                    })(imgMarker, data);
+                }
+            }
+            if (shouldPositionMapInCenter !== undefined && shouldPositionMapInCenter === true) {
+                map.setCenter(latLngBounds.getCenter());
+                map.fitBounds(latLngBounds);
+            }
+
+            //***********ROUTING****************//
+
+            var path = new maps.Polyline({
+                path: latLngList,
+                geodesic: true,
+                strokeColor: '#16a085',
+                strokeOpacity: 1.0,
+                strokeWeight: 5
+            });
+            path.setMap(map);
+
+        }
+
+        function safeApply(scope) {
+            if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
+                scope.$apply();
+            }
+        }
+
+        return mapFactory;
+    });

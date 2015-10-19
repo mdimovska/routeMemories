@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0058DEF9550840FB942907D7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F68134AB19942308B3075F9 /* libsqlite3.dylib */; };
 		037408248F5D49A0BC9EC086 /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9185A8B370714853B1BDF9B6 /* CDVJpegHeaderWriter.m */; };
@@ -78,7 +77,7 @@
 		18421117437A4B77B3BC9D0B /* CDVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = org.apache.cordova.geolocation/CDVLocation.m; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* HelloCordova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCordova.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Route Memories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Route Memories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
@@ -176,7 +175,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* HelloCordova.app */,
+				1D6058910D05DD3D006BFB54 /* Route Memories.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,7 +331,7 @@
 			);
 			name = HelloCordova;
 			productName = HelloCordova;
-			productReference = 1D6058910D05DD3D006BFB54 /* HelloCordova.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Route Memories.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -501,7 +500,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarcape.intern;
-				PRODUCT_NAME = HelloCordova;
+				PRODUCT_NAME = "Route Memories";
 				PROVISIONING_PROFILE = "f27cbdb0-1f9a-40b6-ae14-5546b1c8840b";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -538,7 +537,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarcape.intern;
-				PRODUCT_NAME = HelloCordova;
+				PRODUCT_NAME = "Route Memories";
 				PROVISIONING_PROFILE = "f27cbdb0-1f9a-40b6-ae14-5546b1c8840b";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

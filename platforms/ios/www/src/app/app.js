@@ -100,6 +100,7 @@ angular.module('starter',
                 v: '3.20',
                 language: 'en',
                 sensor: 'false',
+                libraries: 'geometry'
             })
         })
 

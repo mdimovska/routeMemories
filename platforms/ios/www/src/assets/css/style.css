@@ -101,7 +101,7 @@ ion-item.person-info {
     bottom: 220px;
     border: 0 none;
     border-radius: 50%;
-    /* background-color: #aaa; */
+    background-color: #aaa;
     cursor: pointer;
 }
 .take-picture-button:disabled,

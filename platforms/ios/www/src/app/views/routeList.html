@@ -9,7 +9,7 @@
 
     <ion-content>
         <ion-list show-delete="data.showDelete" show-reorder="false">
-            <ion-item ng-repeat="route in routeList" ui-sref="app.route({routeId:route._id})" ng-click="setRouteDetails(route)" class="item-remove-animate">
+            <ion-item collection-repeat="route in routeList" ui-sref="app.route({routeId:route._id})" ng-click="setRouteDetails(route)" class="item-remove-animate">
                 <p>{{route.routeName}}</p>
                 <p>{{route.startDate| date : 'medium'}}</p>
 

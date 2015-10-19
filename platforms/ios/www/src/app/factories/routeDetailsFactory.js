@@ -8,7 +8,7 @@ angular.module('starter')
             routeDetailsFactory.setTempRouteDetails = function (routeDetails) {
                 tempRouteDetails = routeDetails;
             };
-            
+
             routeDetailsFactory.getTempRouteDetails = function () {
                 return tempRouteDetails;
             };
