@@ -1,0 +1,22 @@
+<ion-view view-title="My routes">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-minus-outline"
+                ng-click="data.showDelete = !data.showDelete">
+        </button>
+    </ion-nav-buttons>
+
+
+    <ion-content>
+        <ion-list show-delete="data.showDelete" show-reorder="false">
+            <ion-item ng-repeat="route in routeList" ui-sref="app.route({routeId:route._id})" ng-click="setRouteDetails(route)" class="item-remove-animate">
+                <p>{{route.routeName}}</p>
+                <p>{{route.startDate| date : 'medium'}}</p>
+
+                <ion-delete-button class="ion-minus-circled" 
+                                   ng-click="onItemDelete(route)">
+                </ion-delete-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,198 @@
+.routeMap {
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    width: 200px;
+    height: 400px;
+}
+
+.route-screen-content {
+}
+
+.route-details-wrapper {
+    position: absolute;
+    width: 260px;
+    height: 250px;
+    right: 0;
+    top: 0;
+    z-index: 5;
+}
+.route-details-wrapper .list {
+    margin: 3px;
+    color: white;
+    background: rgb(0, 0, 0); /* Fall-back for browsers that don't support rgba */
+    background: rgba(0, 0, 0, .5);
+}
+.route-details-wrapper .list .item {
+    color: white;
+    background-color: rgba(0,0,0,0.01);
+}
+
+.person-image {
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 5px solid white;
+    left: 0;
+    top: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 90px;
+    height: 90px;
+}
+.person-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    margin: 0;
+}
+
+p.person-info {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+}
+
+ion-item.item.menu-icon {
+    border-top: 0 none;
+    border-bottom-width: 1px;
+    margin: 0;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    cursor: pointer;
+}
+ion-item.item-complex .item-content {
+}
+ion-item.person-info {
+    border: 0;
+    padding: 43px 10px;
+    margin: 0;
+}
+
+.start-stop-button {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    margin: 0 auto;
+    bottom: 20px;
+    right: 0;
+    background-repeat: no-repeat;
+    left: 0;
+    background-size: 140px 140px;
+    border: 0 none;
+    border-radius: 50%;
+    background-position: center;
+}
+.take-picture-button{
+    right: 15%;
+}
+.show-route-button {
+    left: 15%;
+}
+.take-picture-button,
+.show-route-button {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 220px;
+    border: 0 none;
+    border-radius: 50%;
+    background-color: #aaa;
+    cursor: pointer;
+}
+.take-picture-button:disabled,
+.show-route-button:disabled {
+    opacity: 0.7;
+}
+.take-picture-button svg,
+.show-route-button svg{
+    width: 70px;
+    height: 70px;
+}
+.start-button {
+    background-color: #4ecdc4;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz4NCjxzdmcgaGVpZ2h0PSIzMnB4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMiAzMjsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMyIDMyIiB3aWR0aD0iMzJweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQo8ZyBpZD0iX3gzNF9fYXVkaW9fcGxheSI+DQo8cGF0aCBkPSJNOS44MzksMTcuODQydi0zLjY4OFY2LjM5OGMwLTAuNTUxLDAuMzMtMS4wNDcsMC44NC0xLjI1OGMwLjUwOC0wLjIxMSwxLjA5NC0wLjA5NCwxLjQ4MiwwLjI5NWw5LjYwMiw5LjYwMiAgIGMwLjI1NiwwLjI1NSwwLjM5OCwwLjYwMiwwLjM5OCwwLjk2MmMwLDAuMzYxLTAuMTQzLDAuNzA4LTAuMzk4LDAuOTYzbC05LjYwMiw5LjYwM2MtMC4yNiwwLjI2LTAuNjA4LDAuMzk4LTAuOTYyLDAuMzk4ICAgYy0wLjE3NSwwLTAuMzUzLTAuMDMzLTAuNTIxLTAuMTA0Yy0wLjUxLTAuMjExLTAuODQtMC43MDctMC44NC0xLjI1OFYxNy44NDJ6IiBmaWxsPSIjZmZmIi8+PC9nPg0KPC9zdmc+");
+}
+.stop-button {
+    background-color: #ef473a;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz4NCjxzdmcgaGVpZ2h0PSIzMnB4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMiAzMjsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMyIDMyIiB3aWR0aD0iMzJweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQo8ZyBpZD0iX3gzNF9fYXVkaW9fc3RvcCI+DQo8cGF0aCBkPSJNMjYuMTY3LDQuODMzSDUuODMzYy0wLjU1MiwwLTEsMC40NDgtMSwxdjIwLjMzNGMwLDAuNTUzLDAuNDQ4LDEsMSwxaDIwLjMzNGMwLjU1MywwLDEtMC40NDcsMS0xVjUuODMzQzI3LjE2Nyw1LjI4MSwyNi43Miw0LjgzMywyNi4xNjcsNC44MzN6IiBmaWxsPSIjZmZmIi8+DQo8L2c+DQo8L3N2Zz4=");
+}
+.pause-button {
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz4NCjxzdmcgaGVpZ2h0PSIzMnB4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMiAzMjsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMyIDMyIiB3aWR0aD0iMzJweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGcgaWQ9Il94MzRfX2F1ZGlvX3BhdXNlIj48cGF0aCBkPSJNMTIuMjExLDQuNTM4aC0xLjM3MmMtMC4yNzUsMC0wLjUsMC4yMjQtMC41LDAuNXYyMS45MjVjMCwwLjI3NiwwLjIyNSwwLjUsMC41LDAuNWgxLjM3MmMwLjI3NiwwLDAuNS0wLjIyNCwwLjUtMC41VjUuMDM4ICAgQzEyLjcxMSw0Ljc2MSwxMi40ODcsNC41MzgsMTIuMjExLDQuNTM4eiIvPg0KPHBhdGggZD0iTTIxLjY2MSw0LjUzOGgtMS4zNzJjLTAuMjc1LDAtMC41LDAuMjI0LTAuNSwwLjV2MjEuOTI1YzAsMC4yNzYsMC4yMjUsMC41LDAuNSwwLjVoMS4zNzJjMC4yNzYsMCwwLjUtMC4yMjQsMC41LTAuNVY1LjAzOEMyMi4xNjEsNC43NjEsMjEuOTM4LDQuNTM4LDIxLjY2MSw0LjUzOHoiIGZpbGw9IiNmZmYiLz4NCjwvZz4NCjwvc3ZnPg==");
+}
+
+.loading-screen-content .image,
+.login-screen-content .image{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 100px;
+    height: 100%;
+    width: 100%;
+    padding-left: 50px;
+    /* padding-top: 50px; */
+    right: 0;
+    padding-right: 50px;
+}
+
+.loading-screen-content .image svg,
+.login-screen-content .image svg{
+    width: 100%;
+    height: 100%;
+}
+.loading-screen-content .text,
+.login-screen-content .login-button {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    line-height: 100px;
+    position: absolute;
+}
+.login-screen-content .login-button {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.loading-screen-content .text p {
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.home-screen-content {
+}
+.home-screen-content .background-image {
+    background-image: url("../img/travel-background.jpg");
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.end-route-content .save-route-button {
+    margin-bottom: 0;}
+.end-route-content .delete-route-button {
+    float: right;
+    margin-right: 10px;
+}
+
+.end-route-content .item.save-route-wrapper {
+    border-bottom: 0 none;
+    padding-bottom: 5px;
+}
+
+div.info-window div.close {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    cursor: pointer;
+    right: -30px;
+    top: -30px;
+}

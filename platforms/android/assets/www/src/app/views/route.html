@@ -1,0 +1,18 @@
+<ion-view view-title="Route">
+    <ion-content class="route-screen-content" scroll="false">
+        <div id="route_map" class="routeMap"></div>
+        <div class="route-details-wrapper">
+            <div class="list list-inset">
+                <div class="item">
+                    {{route.routeName}}
+                </div>
+                <div class="item">
+                    Start: {{route.startDate | date : 'medium'}}
+                </div>
+                <div class="item">
+                    End: {{route.endDate | date : 'medium'}}
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
